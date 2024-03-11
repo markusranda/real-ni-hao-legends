@@ -144,7 +144,7 @@ export default {
   align-items: center;
   border: solid 2px rgb(204, 204, 204);
   border-radius: 0;
-  font-size: 1.5rem;
+  font-size: 1rem;
 
   height: 4rem;
   width: 4rem;

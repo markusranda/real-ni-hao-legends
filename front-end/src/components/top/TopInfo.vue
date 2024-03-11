@@ -44,7 +44,7 @@ onMounted(() => {
   align-items: center;
   height: 7em;
   flex-direction: row;
-  padding: 64px;
+  padding: 42px;
   justify-content: space-between;
 
   filter: contrast(160%) brightness(100%);

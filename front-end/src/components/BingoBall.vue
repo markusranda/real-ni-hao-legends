@@ -40,7 +40,7 @@ export default {
       ctx.closePath()
 
       // Draw the number on the ball
-      ctx.font = '20px Arial'
+      ctx.font = '14px Arial'
       ctx.fillStyle = 'black'
       ctx.textAlign = 'center'
       ctx.fillText(`${this.ball.number}`, this.ball.x, this.ball.y + this.ball.radius / 4)

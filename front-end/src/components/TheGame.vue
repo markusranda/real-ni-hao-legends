@@ -152,6 +152,6 @@ export default defineComponent({
 .game-buttons {
   display: flex;
   gap: 1rem;
-  width: 300px;
+  width: 200px;
 }
 </style>

@@ -49,9 +49,9 @@ function canUpgrade() {
 .house {
   display: flex;
   flex-direction: column;
-  padding: 32px;
+  padding: 24px;
   border-radius: 24px;
-  width: 300px;
+  width: 200px;
 
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   background: #f5f5f5;
@@ -63,8 +63,8 @@ function canUpgrade() {
 }
 
 .building-image {
-  width: 250px;
-  margin-bottom: 16px;
-  margin-top: 16px;
+  width: 167px;
+  margin-bottom: 12px;
+  margin-top: 12px;
 }
 </style>

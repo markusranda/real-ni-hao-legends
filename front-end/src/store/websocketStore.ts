@@ -20,6 +20,7 @@ export const useWebsocket = defineStore('websocket', {
 
       ws.addEventListener('open', (event) => {
         console.debug('WebSocket is open now.', event)
+        this.loading = false
       })
       ws.addEventListener('close', (event) => {
         console.debug('WebSocket is closed now.', event)
@@ -37,12 +38,22 @@ export const useWebsocket = defineStore('websocket', {
       useWebsocket().ws = ws
     },
     authUser(event: MessageEvent<any> | undefined) {
+      console.log('authUser1')
+
       if (!event) return
-      const userId = localStorage.getItem('UserId')
+
+      let userId = localStorage.getItem('UserId')
+      if (!userId) {
+        userId = uuidv4()
+        localStorage.setItem('UserId', userId)
+      }
+      console.log('authUser2', userId)
+
       if (!userId) return
 
       const data = JSON.parse(event.data) as { Players: Record<string, GameState> }
       const player = data.Players[userId]
+      console.log('authUser3', player)
 
       if (player) {
         this.initDone = true

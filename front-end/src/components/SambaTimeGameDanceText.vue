@@ -41,7 +41,7 @@ export default defineComponent({
   background-color: rgba(0, 0, 0, 0);
   color: #fff;
 
-  font-size: 1rem;
+  font-size: 0.67rem;
   inset: 0;
 
   overflow: hidden;

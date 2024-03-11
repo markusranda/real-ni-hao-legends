@@ -120,7 +120,7 @@ div {
   color: $primary-color;
 
   h1 {
-    font-size: 2.5em;
+    font-size: 1.6em;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     font-weight: bold;
@@ -133,7 +133,7 @@ div {
 
   span {
     display: block;
-    font-size: 1.2em;
+    font-size: .8em;
     line-height: 0.8em;
     letter-spacing: 0.05em;
 
@@ -171,7 +171,7 @@ div {
   color: black;
   border-radius: 5px;
   padding: 10px;
-  font-size: 8px;
+  font-size: 5px;
   font-family: monospace;
   z-index: 1000; // Ensure the menu appears above other elements
 
@@ -181,7 +181,7 @@ div {
 
   h6 {
     text-align: center;
-    font-size: 10px;
+    font-size: 7px;
   }
 }
 </style>

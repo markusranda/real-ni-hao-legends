@@ -40,4 +40,8 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+body {
+  font-size: 14px;
+}
+</style>
