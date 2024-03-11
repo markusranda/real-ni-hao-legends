@@ -15,6 +15,7 @@ func Init(command models.Command) {
 
 	if State.Players[playerId] == nil {
 		State.Players[playerId] = &models.PlayerGameState{
+			Inventory:      models.Inventory{Buildings: []models.NHBuilding{}},
 			RetirementFund: 0.0,
 			Town: models.NHTown{
 				Money: 0.0,

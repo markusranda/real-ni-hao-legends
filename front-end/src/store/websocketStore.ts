@@ -87,6 +87,8 @@ export const useWebsocket = defineStore('websocket', {
       const game = useGame()
       const partial = wsMessage?.Players[userId]
 
+      console.log(partial)
+
       const state = { ...game.state, ...partial }
       const players = wsMessage.Players
       const samba = wsMessage.Samba

@@ -4,7 +4,10 @@ import { useGame } from '@/store/game'
 import BuildingV2 from '@/components/BuildingV2.vue'
 
 const userId = localStorage.getItem('UserId')!
-const items = computed(() => useGame().players[userId].inventory.buildings)
+console.log(userId)
+console.log(useGame().state)
+
+const items = computed(() => useGame().state.inventory.buildings)
 </script>
 
 <template>

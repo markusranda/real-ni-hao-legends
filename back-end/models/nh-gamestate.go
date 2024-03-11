@@ -7,9 +7,9 @@ type GameState struct {
 	Commands []Command
 }
 type PlayerGameState struct {
-	RetirementFund float64 `json:"retirementFund"`
-	Inventory      Inventory
-	Town           NHTown `json:"town"`
+	RetirementFund float64   `json:"retirementFund"`
+	Inventory      Inventory `json:"inventory"`
+	Town           NHTown    `json:"town"`
 }
 
 type Inventory struct {

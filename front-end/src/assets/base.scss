@@ -1,17 +1,17 @@
 button {
   background: linear-gradient(116deg, rgba(181, 181, 232, 0.4), rgba(241, 173, 255, 0.4));
   border: 0;
-  border-radius: 16px;
+  border-radius: 24px;
   user-select: none;
   color: #313131;
   cursor: pointer;
-  padding: 0 16px;
+  padding: 8px 16px;
   transition-property: box-shadow;
   -webkit-tap-highlight-color: transparent;
-  transition: transform 0.4s ease-in-out;
-    transition-duration: 0.4s;
-    transition-timing-function: ease-in-out;
 
+  box-shadow: 0 0 0 1px white,
+  0.3em 0.3em 1em rgba(0, 0, 0, 0.6);
+  font-size: 12px;
 
   &, span {
     display: block;
@@ -31,22 +31,13 @@ button {
   }
 
 
-  transition: transform 0.4s ease-in-out; // add this line
+  transition: transform 0.4s ease-in-out;
 
   &:hover {
-    animation: bounce-zoom 0.2s linear;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
+    transform: scale3d(1.05, 1.10, 1.05);
   }
-}
 
-@keyframes bounce-zoom {
-
-  100% {
-    transform: scale3d(1.05, 1.05, 1.05);
+  &:active {
+    transform: scale3d(0.85, 0.95, 0.85);
   }
-}
-
-* {
-  // skeumophic borders with inner shadow
 }

@@ -49,7 +49,7 @@ function canUpgrade() {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border-radius: 16px;
+  border-radius: 24px;
   width: 200px;
 
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
