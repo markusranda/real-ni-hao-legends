@@ -28,3 +28,5 @@ app.mount('#app')
 export function send(message: NHCommand) {
   ws.send(JSON.stringify(message))
 }
+
+console.log("Hei")
