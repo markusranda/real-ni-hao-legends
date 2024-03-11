@@ -13,15 +13,16 @@ func Init(command models.Command) {
 	playerId := command.PlayerId
 	log.Printf("Init player %s", playerId)
 
-	// TODO Load from database
-	State.Players[playerId] = &models.PlayerGameState{
-		RetirementFund: 0.0,
-		Town: models.NHTown{
-			Money: 0.0,
-			Name:  command.Data["name"].(string),
-			Buildings: map[string]models.NHBuilding{
-				"Dream pavilion": buildings.CreateDreamPavilion(buildings.INIT),
+	if State.Players[playerId] == nil {
+		State.Players[playerId] = &models.PlayerGameState{
+			RetirementFund: 0.0,
+			Town: models.NHTown{
+				Money: 0.0,
+				Name:  command.Data["name"].(string),
+				Buildings: map[string]models.NHBuilding{
+					"Dream pavilion": buildings.CreateDreamPavilion(buildings.INIT),
+				},
 			},
-		},
+		}
 	}
 }
