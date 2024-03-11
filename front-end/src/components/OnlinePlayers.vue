@@ -11,7 +11,6 @@ function formatUUID(uuid: string) {
 }
 
 function formatTime(time: number) {
-  console.log(time)
   return new Date(time * 1000).toLocaleTimeString()
 }
 
@@ -24,7 +23,7 @@ function getPlayerName(userId: string) {
 
 onMounted(() => {
   if (Notification.permission !== 'granted') {
-    console.log('Requesting permission...')
+    console.debug('Requesting permission...')
     Notification.requestPermission()
   }
 })

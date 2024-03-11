@@ -57,10 +57,10 @@ import SambaTimeGameStart from './SambaTimeGameStart.vue'
 import SambaTimeGameDance from './SambaTimeGameDance.vue'
 import SambaTimeGameEnd from './SambaTimeGameEnd.vue'
 import SambaTimeScoreboard from './SambaTimeScoreboard.vue'
-import { send } from '@/main'
 import { NHScore } from '@/models/nh-samba'
 import { useGame } from '@/store/game'
 import { NHCommand } from '@/models/nh-command'
+import { useWebsocket } from '@/store/websocketStore'
 
 const SAMBA_GAME_STATE = {
   start: 'start',
@@ -107,7 +107,7 @@ export default {
           townName: useGame().state.town.name
         } as NHScore
       } as NHCommand
-      send(command)
+      useWebsocket().send(command)
     },
     handleRetry() {
       this.score = 0

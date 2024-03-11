@@ -5,13 +5,16 @@
 </template>
 
 <script lang="ts" setup>
+import { useWebsocket } from '@/store/websocketStore'
 import { reactive } from 'vue'
-import { ws } from '@/main'
 
 const networkStatus = reactive({
   error: false,
   errorMessage: ''
 })
+
+const ws = useWebsocket().ws
+if (!ws) throw Error("Can't get no networks status without ws")
 
 ws.addEventListener('error', (error) => {
   console.error('WebSocket encountered error: ', error)
@@ -20,7 +23,6 @@ ws.addEventListener('error', (error) => {
 })
 
 ws.addEventListener('close', () => {
-  console.log('WebSocket closed')
   networkStatus.error = true
   networkStatus.errorMessage = 'WebSocket closed'
 })

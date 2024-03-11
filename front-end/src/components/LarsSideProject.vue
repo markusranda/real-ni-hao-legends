@@ -52,7 +52,6 @@ import { ref } from 'vue'
 import Modal from '@/components/Modal.vue'
 
 const show = ref(false)
-console.log(show.value)
 </script>
 
 <style>

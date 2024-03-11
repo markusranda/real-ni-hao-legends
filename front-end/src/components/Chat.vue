@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useGame } from '@/store/game'
-import { send } from '@/main'
 import { NHCommand } from '@/models/nh-command'
+import { useWebsocket } from '@/store/websocketStore'
 
 const chat = computed(() => useGame().chat)
 const currentMessage = ref('')
@@ -10,7 +10,7 @@ const chatMessagesContainer = ref<HTMLDivElement>() // Define the ref here
 
 function sendChatMessage() {
   if (currentMessage.value) {
-    send({
+    useWebsocket().send({
       type: 'chat',
       userId: localStorage.getItem('UserId')!,
       data: { message: currentMessage.value, type: '' }

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import {computed, onMounted, ref, watch} from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useGame } from '@/store/game'
 import NetworkStatus from '@/components/NetworkStatus.vue'
-import Inventory from "@/components/Inventory.vue";
+import Inventory from '@/components/Inventory.vue'
 
 const valutaType = ref('Gryn')
 const state = computed(() => useGame().state)
@@ -10,7 +10,7 @@ const state = computed(() => useGame().state)
 const isInventory = ref(false)
 
 watch(isInventory, (newState, oldState) => {
-  console.log(isInventory.value)
+  console.debug(isInventory.value)
 })
 onMounted(() => {
   const texts = ['Gryn', 'Gronk', 'Spenn', 'Peng', 'DallaBills', 'Penga']
@@ -20,8 +20,6 @@ onMounted(() => {
     valutaType.value = texts[index]
     index = (index + 1) % texts.length
   }, 10000)
-
-
 })
 </script>
 <template>
@@ -31,9 +29,7 @@ onMounted(() => {
       <h1 class="town-name">{{ state.town.name }}</h1>
       <NetworkStatus />
     </div>
-    <button @click="isInventory = !isInventory">
-      Inventory
-    </button>
+    <button @click="isInventory = !isInventory">Inventory</button>
     <h1 :class="state.town.money >= 0 ? 'positive' : 'negative'" class="peng-tekst">
       {{ state.town.money }} {{ valutaType }}
     </h1>

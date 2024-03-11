@@ -1,5 +1,5 @@
-import { send } from '@/main'
 import { NHCommand } from '@/models/nh-command'
+import { useWebsocket } from '@/store/websocketStore'
 
 export const buildingUpgrade = (key: string) => {
   const command = {
@@ -10,5 +10,5 @@ export const buildingUpgrade = (key: string) => {
     }
   } as NHCommand
 
-  send(command)
+  useWebsocket().send(command)
 }
