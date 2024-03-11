@@ -2,6 +2,7 @@
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useGame } from '@/store/game'
 import { send } from '@/main'
+import { NHCommand } from '@/models/nh-command'
 
 const chat = computed(() => useGame().chat)
 const currentMessage = ref('')
@@ -13,7 +14,7 @@ function sendChatMessage() {
       type: 'chat',
       userId: localStorage.getItem('UserId')!,
       data: { message: currentMessage.value, type: '' }
-    })
+    } as NHCommand)
     currentMessage.value = ''
   }
 }

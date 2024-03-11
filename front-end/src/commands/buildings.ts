@@ -1,4 +1,5 @@
 import { send } from '@/main'
+import { NHCommand } from '@/models/nh-command'
 
 export const buildingUpgrade = (key: string) => {
   const command = {
@@ -7,9 +8,7 @@ export const buildingUpgrade = (key: string) => {
     data: {
       buildingId: key
     }
-  }
-
-  console.log(command)
+  } as NHCommand
 
   send(command)
 }
