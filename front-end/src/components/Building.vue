@@ -54,11 +54,23 @@ function canUpgrade() {
 
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   background: #f5f5f5;
-  transition: filter 0.4s ease;
+  transition: all 0.3s ease;
+
+  img {
+    transition: all 0.4s ease;
+  }
+}
+
+.house:active {
+  transform: scale(0.95);
 }
 
 .house:hover {
   filter: contrast(95%);
+
+  img {
+    filter: contrast(120%);
+  }
 }
 
 .building-image {
