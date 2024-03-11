@@ -20,4 +20,8 @@ func ScoreUpdate(command models.Command) {
 
 	score := models.NHScore{UserId: userId, Score: scoreValue, TownName: townName}
 	State.Samba.Scores = append(State.Samba.Scores, score)
+
+	if score.Score > 0 {
+		State.Players[userId].Inventory.Buildings = append(State.Players[userId].Inventory.Buildings, GetRandomLoot())
+	}
 }

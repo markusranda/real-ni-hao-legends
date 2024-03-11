@@ -8,7 +8,12 @@ type GameState struct {
 }
 type PlayerGameState struct {
 	RetirementFund float64 `json:"retirementFund"`
-	Town           NHTown  `json:"town"`
+	Inventory      Inventory
+	Town           NHTown `json:"town"`
+}
+
+type Inventory struct {
+	Buildings []NHBuilding `json:"buildings"`
 }
 
 type Chat struct {

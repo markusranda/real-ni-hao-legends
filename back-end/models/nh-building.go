@@ -9,8 +9,3 @@ type NHBuilding struct {
 	BaseCost    float64 `json:"baseCost"`
 	UpgradeCost float64 `json:"upgradeCost"`
 }
-
-type NHBuildingCommand struct {
-	Key    string
-	Action string
-}
