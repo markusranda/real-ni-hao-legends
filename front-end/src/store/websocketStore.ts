@@ -28,9 +28,10 @@ export const useWebsocket = defineStore('websocket', {
         console.error('WebSocket encountered error: ', error)
       })
       ws.onmessage = async (event) => {
-        this.loading = false
-        if (this.initDone) useWebsocket().updateGameState(JSON.parse(event.data))
-        else this.authUser(event)
+        if (this.initDone) {
+          useWebsocket().updateGameState(JSON.parse(event.data))
+          this.loading = false
+        } else this.authUser(event)
       }
 
       useWebsocket().ws = ws
