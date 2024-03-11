@@ -87,6 +87,7 @@ import Chat from '@/components/Chat.vue'
 import Separator from '@/components/Separator.vue'
 import { NHCommand } from '@/models/nh-command'
 import LarsSideProject from '@/components/LarsSideProject.vue'
+import { NHBuilding } from './models/nh-building'
 
 const HAPPENINGS = {
   zeus: {

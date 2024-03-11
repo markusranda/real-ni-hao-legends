@@ -1,21 +1,23 @@
 <template>
-  <div class="dance-floor">
-    <div v-for="(col, i) in grid" :key="`dance_tile_col${i}`">
-      <div
-        v-for="(danceTile, j) in col"
-        :key="`dance_tile${i}${j}`"
-        class="dance-floor-tile"
-        :class="danceTile.marked ? 'dance-floor-tile-active' : ''"
-      >
-        <img :src="danceTile?.shoe" alt="" class="dance-floor-shoe" />
+  <div class="samba-time-game-dance">
+    <div class="dance-floor">
+      <div v-for="(col, i) in grid" :key="`dance_tile_col${i}`">
+        <div
+          v-for="(danceTile, j) in col"
+          :key="`dance_tile${i}${j}`"
+          class="dance-floor-tile"
+          :class="danceTile.marked ? 'dance-floor-tile-active' : ''"
+        >
+          <img :src="danceTile?.shoe" alt="" class="dance-floor-shoe" />
+        </div>
       </div>
+
+      <SambaTimeGameDanceText :text="danceMoves[danceMoveIndex].name" />
+
+      <audio id="samba_time_player" preload="auto" src="samba_time.mp3"></audio>
+      <audio id="good-sound-player" preload="auto" src="yep.mp3"></audio>
+      <audio id="bad-sound-player" preload="auto" src="damage.mp3"></audio>
     </div>
-
-    <SambaTimeGameDanceText :text="danceMoves[danceMoveIndex].name" />
-
-    <audio id="samba_time_player" preload="auto" src="samba_time.mp3"></audio>
-    <audio id="good-sound-player" preload="auto" src="yep.mp3"></audio>
-    <audio id="bad-sound-player" preload="auto" src="damage.mp3"></audio>
   </div>
 </template>
 
@@ -321,15 +323,20 @@ export default {
   }
 }
 
+.samba-time-game-dance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .dance-floor {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.1rem;
 
-  background: url('darkwood.webp');
-  background-repeat: repeat;
-  background-size: 50%;
+  background-color: rgba(0, 0, 0, 0.45);
+
   padding: 2rem;
   border-radius: 1rem;
 }

@@ -4,7 +4,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 
 const players = computed(() => useGame().players)
 const commands = computed(() => useGame().commands)
-const drag = ref<HTMLDivElement>(null)
+const drag = ref<HTMLDivElement>(null!)
 
 function formatUUID(uuid: string) {
   return uuid.slice(0, 8) // Display only the first 8 characters of the UUID
