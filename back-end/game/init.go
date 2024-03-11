@@ -20,7 +20,7 @@ func Init(command models.Command) {
 			Money: 0.0,
 			Name:  command.Data["name"].(string),
 			Buildings: map[string]models.NHBuilding{
-				"Dream pavilion": buildings.CreateDreamPavilion(),
+				"Dream pavilion": buildings.CreateDreamPavilion(buildings.INIT),
 			},
 		},
 	}
