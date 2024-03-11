@@ -1,7 +1,6 @@
 package game
 
 import (
-	"ni-hao-legends/game/buildings"
 	"ni-hao-legends/models"
 )
 
@@ -23,6 +22,6 @@ func ScoreUpdate(command models.Command) {
 	State.Samba.Scores = append(State.Samba.Scores, score)
 
 	if score.Score > 0 {
-		State.Players[userId].Inventory.Buildings = append(State.Players[userId].Inventory.Buildings, buildings.CreateDreamPavilion(buildings.RANDOM))
+		State.Players[userId].Inventory.Buildings = append(State.Players[userId].Inventory.Buildings, GetRandomLoot())
 	}
 }
