@@ -1,0 +1,107 @@
+button {
+  animation: none;
+  $btnColor: rgb(113, 80, 255);
+  $btnTextColor: #fff;
+  $btnTextFocusColor: lighten($btnColor, 40%);
+  $btnEdge: 0.2em;
+  $btnHoleEdge: 0.1em;
+  $dropShadowColor: rgba(0, 0, 0, 0.47);
+  $darkEdgeColor: rgba(0, 0, 0, 0.27);
+  $lightEdgeColor: rgba(255, 255, 255, 0.27);
+  $coloredDarkEdgeColor: darken($btnColor, 10%);
+  $coloredDarkerEdgeColor: darken($btnColor, 20%);
+  height: 64px;
+  background: // top-to-bottom shading
+          linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.13)),
+            // reflection at top
+          radial-gradient(90% 7% at 50% 8%, rgba(255, 255, 255, 0.47) 25%, rgba(255, 255, 255, 0) 50%),
+          $btnColor;
+  border: 0 {
+    radius: 24px;
+  };
+
+  min-width: 100px; // Adjust this value as needed
+
+
+  user-select: none;
+  box-shadow: // drop shadow
+          $btnEdge $btnEdge 0.5em $dropShadowColor,
+            // top, left, and right edges of hole
+          0 (-$btnHoleEdge) 0 $btnHoleEdge $darkEdgeColor,
+            // bottom edge of hole
+          0 $btnHoleEdge 0 $btnHoleEdge $lightEdgeColor,
+            // right edge of button
+                  (-$btnEdge) 0 $btnEdge $coloredDarkEdgeColor inset,
+            // top edge of button
+          0 $btnEdge $btnEdge $lightEdgeColor inset,
+            // left edge of button
+          $btnEdge 0 $btnEdge $lightEdgeColor inset,
+            // bottom edge of button
+          0 (-$btnEdge) $btnEdge $coloredDarkEdgeColor inset;
+  color: $btnTextColor;
+  cursor: pointer;
+  font: 14px/1.5 sans-serif;
+  padding: 0 24px;
+  text-shadow: 0 0 $btnEdge fade-out($btnTextColor, 0.53);
+  transition-property: box-shadow;
+  -webkit-tap-highlight-color: transparent;
+
+  &, span {
+    display: block;
+    transition: {
+      duration: 0.1s;
+      timing-function: linear;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  span {
+    transition-property: transform;
+    will-change: transform;
+  }
+
+  &:active {
+    box-shadow: // pull shadow inward
+            0 0 0 $dropShadowColor,
+              // edges of hole stay the same
+            0 (-$btnHoleEdge) 0 $btnHoleEdge $darkEdgeColor,
+            0 $btnHoleEdge 0 $btnHoleEdge $lightEdgeColor,
+              // darker right shadow with a bit of blue to result from button being deep into hole
+                    (-$btnEdge) 0 $btnEdge $coloredDarkerEdgeColor inset,
+              // similar shadow at top and left
+            0 $btnEdge $btnEdge $darkEdgeColor inset,
+            $btnEdge 0 $btnEdge $darkEdgeColor inset,
+              // same as 4th shadow but coming from bottom
+            0 (-$btnEdge) $btnEdge $coloredDarkerEdgeColor inset;
+
+    span {
+      transform: scale(0.95);
+    }
+  }
+
+  &:focus {
+    text-shadow: 0 0 $btnEdge fade-out($btnTextFocusColor, 0.53);
+  }
+
+  transition: transform 0.4s ease-in-out; // add this line
+
+  &:hover {
+    animation: bounce-zoom 0.2s linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes bounce-zoom {
+
+  100% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+}
+
+* {
+  // skeumophic borders with inner shadow
+}
