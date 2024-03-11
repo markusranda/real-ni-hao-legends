@@ -10,9 +10,9 @@ function formatUUID(uuid: string) {
   return uuid.slice(0, 8) // Display only the first 8 characters of the UUID
 }
 
-function formatTime() {
-  const date = new Date()
-  return date.toLocaleTimeString('en-US', { hour12: false })
+function formatTime(time: number) {
+  console.log(time)
+  return new Date(time * 1000).toLocaleTimeString()
 }
 
 function getPlayerName(userId: string) {
@@ -107,7 +107,7 @@ onMounted(() => {
         <span> {{ command.type }}</span>
         <span> {{ getPlayerName(command.userId) }} </span>
         <span> {{ formatUUID(command.userId) }}</span>
-        <span style="margin-left: 4px"> {{ formatTime() }}</span>
+        <span style="margin-left: 4px"> {{ formatTime(command.time) }}</span>
       </li>
     </ul>
   </div>
