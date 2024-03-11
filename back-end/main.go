@@ -110,7 +110,10 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 		var cmd models.Command
+
 		err = json.Unmarshal(message, &cmd)
+		log.Println(cmd.Time)
+		cmd.Time = time.Now().Unix()
 		if err != nil {
 			log.Println("❌️🥵 error: %v", err)
 			continue
