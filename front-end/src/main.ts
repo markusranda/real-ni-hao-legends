@@ -7,7 +7,7 @@ import { init } from '@/commands/init'
 import { NHCommand } from './models/nh-command'
 
 const app = createApp(App)
-const ws = new WebSocket('ws://localhost:8080/ws')
+const ws = new WebSocket(`ws://${window.location.hostname}:8080/ws`)
 ws.addEventListener('open', (event) => {
   console.log('WebSocket is open now.', event)
   console.log('Initializing game state')
