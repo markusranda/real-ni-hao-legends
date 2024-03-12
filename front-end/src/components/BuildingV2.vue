@@ -1,11 +1,12 @@
 <template>
-  <div class="house">
+  <div class="house" :style="backgroundImageStyle" @mouseover="showStats = true" @mouseleave="showStats = false">
     <h5>{{ building.name }}</h5>
-    <img class="building-image" :src="building.imgUrl" alt="" srcset="" draggable="false" />
     <div class="d-flex flex-column">
-      <span>{{ `income: ${building.income}` }}</span>
-      <span>{{ `level: ${building.level}` }}</span>
-      <div v-if="!disabled" house-buttons>
+      <div class="stats" v-show="showStats">
+        <span>{{ `income: ${building.income}` }}</span>
+        <span>{{ `level: ${building.level}` }}</span>
+      </div>
+      <div v-if="!disabled" >
         <button :class="{ unavailable: !canUpgrade }" @click="handleClickUpgradeBuilding">
           {{ building.upgradeCost }} $
         </button>
@@ -22,6 +23,8 @@ import {NHBuilding} from '@/models/nh-building'
 import {buildingUpgrade} from '@/commands/buildings'
 import {computed} from 'vue'
 import {useGame} from '@/store/game'
+
+let showStats = false;
 
 const props = defineProps<{
   building: NHBuilding
@@ -45,28 +48,43 @@ function getBuildingUpgradeCost() {
 function canUpgrade() {
   return getBuildingUpgradeCost() <= money.value
 }
+
+const backgroundImageStyle = computed(() => ({
+  backgroundImage: `url(${building.imgUrl})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+}));
 </script>
 
 <style scoped>
+
+.stats {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.house:hover .stats {
+  opacity: 1;
+}
+
+
 .house {
   display: flex;
   flex-direction: column;
-  padding: 24px;
   border-radius: 24px;
-  width: 200px;
+  width: 100px;
 
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   background: #f5f5f5;
   transition: filter 0.4s ease;
+
+  margin: 8px;
+
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+
 }
 
 .house:hover {
   filter: contrast(95%);
-}
-
-.building-image {
-  width: 167px;
-  margin-bottom: 12px;
-  margin-top: 12px;
 }
 </style>
