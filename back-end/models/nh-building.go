@@ -17,6 +17,10 @@ type NHBuilding struct {
 	IncomeScale      float64 `json:"incomeScale"`
 	BaseCostScale    float64 `json:"baseCostScale"`
 	UpgradeCostScale float64 `json:"upgradeCostScale"`
+
+	// enhancement
+	EnhancementSlots     int `json:"enhancementSlots"`
+	UsedEnhancementSlots int `json:"usedEnhancementSlots"`
 }
 
 func (n *NHBuilding) RandomizeStats() {
@@ -28,7 +32,6 @@ func (n *NHBuilding) RandomizeStats() {
 }
 
 func (n *NHBuilding) Upgrade() {
-	n.Level++
 	n.Income = n.Income * n.IncomeScale
 	n.UpgradeCost = n.UpgradeCost * n.UpgradeCostScale
 

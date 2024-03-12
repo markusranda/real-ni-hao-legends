@@ -24,6 +24,8 @@ func HandleCommand(command models.Command) error {
 		BuildingUpgrade(command)
 	case "samba.score":
 		ScoreUpdate(command)
+	case "cheats.loot":
+		Loot(command)
 	default:
 		return fmt.Errorf("unknown command action: %s", command.Action)
 	}

@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { useGame } from '@/store/game'
 import { computed, onMounted, ref, watch } from 'vue'
+import {send} from "vite";
+import {useWebsocket} from "@/store/websocketStore";
+import {NHCommand} from "@/models/nh-command";
 
-const players = computed(() => useGame().players)
+const players = computed(() => useGame().otherPlayers)
 const commands = computed(() => useGame().commands)
 const drag = ref<HTMLDivElement>(null!)
 
@@ -87,6 +90,13 @@ onMounted(() => {
     true
   )
 })
+
+function getLoot() {
+  useWebsocket().send({
+    type: 'cheats.loot',
+    userId: localStorage.getItem('UserId')!,
+  } as NHCommand)
+}
 </script>
 
 <template>
@@ -108,6 +118,7 @@ onMounted(() => {
         <span> {{ formatUUID(command.userId) }}</span>
         <span style="margin-left: 4px"> {{ formatTime(command.time) }}</span>
       </li>
+      <button @click="getLoot">LOOT</button>
     </ul>
   </div>
 </template>
@@ -171,7 +182,7 @@ div {
   color: black;
   border-radius: 5px;
   padding: 10px;
-  font-size: 5px;
+  font-size: 10px;
   font-family: monospace;
   z-index: 1000; // Ensure the menu appears above other elements
 
@@ -183,5 +194,12 @@ div {
     text-align: center;
     font-size: 7px;
   }
+
+  button {
+    box-shadow: none;
+    background: rgba(221, 110, 255, 0.2);
+    margin: auto;
+  }
+
 }
 </style>

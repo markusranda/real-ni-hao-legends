@@ -6,14 +6,18 @@ import (
 
 func NewBuilding(key string, name string, imgUrl string, income float64, upgradeCost float64, incomeScale float64, upgradeCostScale float64, stats BuildingStats) models.NHBuilding {
 	building := models.NHBuilding{
-		Key:              key,
-		Name:             name,
-		ImgUrl:           imgUrl,
-		Income:           income,
-		Level:            1,
-		UpgradeCost:      upgradeCost,
+		Level:       1,
+		Key:         key,
+		Name:        name,
+		ImgUrl:      imgUrl,
+		Income:      income,
+		UpgradeCost: upgradeCost,
+
 		IncomeScale:      incomeScale,
 		UpgradeCostScale: upgradeCostScale,
+
+		EnhancementSlots:     5,
+		UsedEnhancementSlots: 0,
 	}
 
 	return *maybeRandomizeStats(&building, stats)
@@ -106,6 +110,9 @@ func CreateØysteinSunde(stats BuildingStats) models.NHBuilding {
 
 		IncomeScale:      1.1,
 		UpgradeCostScale: 1.1,
+
+		EnhancementSlots:     5,
+		UsedEnhancementSlots: 0,
 	}
 
 	return *maybeRandomizeStats(&building, stats)

@@ -7,7 +7,7 @@ export const useGame = defineStore('game', () => {
   return {
     chat: [] as NhMessage[],
     state: {} as GameState,
-    players: {} as Record<string, GameState>,
+    otherPlayers: {} as Record<string, GameState>,
     samba: {} as NHSamba,
     commands: [] as NHCommand[]
   }
