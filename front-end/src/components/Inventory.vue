@@ -2,11 +2,6 @@
 import { computed } from 'vue'
 import { useGame } from '@/store/game'
 import BuildingV2 from '@/components/BuildingV2.vue'
-
-const userId = localStorage.getItem('UserId')!
-console.log(userId)
-console.log(useGame().state)
-
 const items = computed(() => useGame().state.inventory.buildings)
 </script>
 

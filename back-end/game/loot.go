@@ -6,15 +6,17 @@ import (
 	"ni-hao-legends/models"
 )
 
-var possibilities []func(int) models.NHBuilding = []func(int) models.NHBuilding{
+var possibilities = []func(stats buildings.BuildingStats) models.NHBuilding{
 	buildings.CreateDreamPavilion,
 	buildings.CreateHoleInTheGround,
 	buildings.CreateNMSGjenbruk,
 	buildings.CreateOrientalDragon,
+	buildings.CreateEricClapton,
+	buildings.CreateØysteinSunde,
 }
 
 func GetRandomLoot() models.NHBuilding {
 	randomIndex := rand.Intn(len(possibilities))
 	// Get a random building from the possibilities array
-	return possibilities[randomIndex](buildings.RANDOM)
+	return possibilities[randomIndex](buildings.RandomStats)
 }

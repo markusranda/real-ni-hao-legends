@@ -2,7 +2,6 @@ package game
 
 import (
 	"log"
-	"math"
 	"ni-hao-legends/models"
 )
 
@@ -15,16 +14,12 @@ func BuildingUpgrade(command models.Command) {
 	state := State.Players[playerId]
 	building := state.Town.Buildings[id]
 
-	if state.Town.Money < (building.BaseCost * building.Level) {
+	if state.Town.Money < (building.UpgradeCost) {
 		log.Printf("❌💰 not enough money")
 		return
 	}
 
-	upgradeCost := math.Floor(building.BaseCost * building.Level * 1.1)
-	building.UpgradeCost = upgradeCost
-	state.Town.Money -= upgradeCost
-	building.Level++
-	building.Income = math.Floor(building.Income * 1.1)
+	building.Upgrade()
 
 	state.Town.Buildings[id] = building
 }

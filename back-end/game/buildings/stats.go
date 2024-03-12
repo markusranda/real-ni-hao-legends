@@ -1,6 +1,8 @@
 package buildings
 
+type BuildingStats int
+
 const (
-	INIT   = iota
-	RANDOM = iota
+	InitStats   BuildingStats = iota
+	RandomStats               = iota
 )

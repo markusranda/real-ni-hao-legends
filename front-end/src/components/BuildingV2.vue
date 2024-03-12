@@ -5,11 +5,13 @@
     <div class="d-flex flex-column">
       <span>{{ `income: ${building.income}` }}</span>
       <span>{{ `level: ${building.level}` }}</span>
-      <div class="house-buttons">
+      <div v-if="!disabled" house-buttons>
         <button :class="{ unavailable: !canUpgrade }" @click="handleClickUpgradeBuilding">
           {{ building.upgradeCost }} $
         </button>
         <button @click="handleClickSellBuilding">sell</button>
+      </div>
+      <div v-else>
       </div>
     </div>
   </div>

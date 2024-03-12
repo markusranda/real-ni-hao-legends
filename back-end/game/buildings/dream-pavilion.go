@@ -1,112 +1,119 @@
 package buildings
 
 import (
-	"math/rand"
 	"ni-hao-legends/models"
 )
 
+func NewBuilding(key string, name string, imgUrl string, income float64, upgradeCost float64, incomeScale float64, upgradeCostScale float64, stats BuildingStats) models.NHBuilding {
+	building := models.NHBuilding{
+		Key:              key,
+		Name:             name,
+		ImgUrl:           imgUrl,
+		Income:           income,
+		Level:            1,
+		UpgradeCost:      upgradeCost,
+		IncomeScale:      incomeScale,
+		UpgradeCostScale: upgradeCostScale,
+	}
+
+	return *maybeRandomizeStats(&building, stats)
+}
+
 func CreateDreamPavilion(
-	stats int,
+	stats BuildingStats,
 ) models.NHBuilding {
-	if stats == RANDOM {
-		return models.NHBuilding{
-			Key:         "Dream pavilion",
-			Name:        "Dream pavilion",
-			ImgUrl:      "dream_pavilion.webp",
-			Income:      float64(rand.Intn(10) + 1),
-			Level:       1,
-			BaseCost:    float64(rand.Intn(100) + 50),
-			UpgradeCost: float64(rand.Intn(1000) + 500),
-		}
-	} else if stats == INIT {
-		return models.NHBuilding{
-			Key:         "Dream pavilion",
-			Name:        "Dream pavilion",
-			ImgUrl:      "dream_pavilion.webp",
-			Income:      5,
-			Level:       1,
-			BaseCost:    50,
-			UpgradeCost: 500,
-		}
-	} else {
-		panic("get it together, you can do better than this")
-	}
+	return NewBuilding(
+		"Dream pavilion",
+		"Dream pavilion",
+		"dream_pavilion.webp",
+		10,
+		1000,
+		1.1,
+		1.1,
+		stats,
+	)
 }
 
-func CreateHoleInTheGround(stats int) models.NHBuilding {
-	if stats == RANDOM {
-		return models.NHBuilding{
-			Key:         "Hole in the ground",
-			Name:        "Hole in the ground",
-			ImgUrl:      "hole_in_the_ground.webp",
-			Income:      float64(rand.Intn(20) + 1), // Random number between 1 and 20
-			Level:       1,
-			BaseCost:    float64(rand.Intn(200) + 100),   // Random number between 100 and 300
-			UpgradeCost: float64(rand.Intn(2000) + 1000), // Random number between 1000 and 3000
-		}
-	} else if stats == INIT {
-		return models.NHBuilding{
-			Key:         "Hole in the ground",
-			Name:        "Hole in the ground",
-			ImgUrl:      "hole_in_the_ground.webp",
-			Income:      10,
-			Level:       1,
-			BaseCost:    100,
-			UpgradeCost: 1000,
-		}
-	} else {
-		panic("get it together, you can do better than this")
+func CreateHoleInTheGround(stats BuildingStats) models.NHBuilding {
+	building := models.NHBuilding{
+		Key:         "Hole in the ground",
+		Name:        "Hole in the ground",
+		ImgUrl:      "hole_in_the_ground.webp",
+		Level:       1,
+		Income:      -20,
+		UpgradeCost: 3000,
+
+		IncomeScale:      1.1,
+		UpgradeCostScale: 1.1,
 	}
+	return *maybeRandomizeStats(&building, stats)
 }
 
-func CreateNMSGjenbruk(stats int) models.NHBuilding {
-	if stats == RANDOM {
-		return models.NHBuilding{
-			Key:         "NMS Gjenbruk",
-			Name:        "NMS Gjenbruk",
-			ImgUrl:      "nms_gjenbruk.webp",
-			Income:      float64(rand.Intn(30) + 1), // Random number between 1 and 30
-			Level:       1,
-			BaseCost:    float64(rand.Intn(300) + 150),   // Random number between 150 and 450
-			UpgradeCost: float64(rand.Intn(3000) + 1500), // Random number between 1500 and 4500
-		}
-	} else if stats == INIT {
-		return models.NHBuilding{
-			Key:         "NMS Gjenbruk",
-			Name:        "NMS Gjenbruk",
-			ImgUrl:      "nms_gjenbruk.webp",
-			Income:      15,
-			Level:       1,
-			BaseCost:    150,
-			UpgradeCost: 1500,
-		}
-	} else {
-		panic("get it together, you can do better than this")
+func CreateNMSGjenbruk(stats BuildingStats) models.NHBuilding {
+	building := models.NHBuilding{
+		Key:         "NMS Gjenbruk",
+		Name:        "NMS Gjenbruk",
+		ImgUrl:      "nms_gjenbruk.webp",
+		Level:       1,
+		Income:      10,
+		UpgradeCost: 3000,
+
+		IncomeScale:      1.1,
+		UpgradeCostScale: 1.1,
 	}
+	return *maybeRandomizeStats(&building, stats)
 }
 
-func CreateOrientalDragon(stats int) models.NHBuilding {
-	if stats == RANDOM {
-		return models.NHBuilding{
-			Key:         "Oriental Dragon",
-			Name:        "Oriental Dragon",
-			ImgUrl:      "oriental_dragon.webp",
-			Income:      float64(rand.Intn(40) + 1), // Random number between 1 and 40
-			Level:       1,
-			BaseCost:    float64(rand.Intn(400) + 200),   // Random number between 200 and 600
-			UpgradeCost: float64(rand.Intn(4000) + 2000), // Random number between 2000 and 6000
-		}
-	} else if stats == INIT {
-		return models.NHBuilding{
-			Key:         "Oriental Dragon",
-			Name:        "Oriental Dragon",
-			ImgUrl:      "oriental_dragon.webp",
-			Income:      20,
-			Level:       1,
-			BaseCost:    200,
-			UpgradeCost: 2000,
-		}
-	} else {
-		panic("get it together, you can do better than this")
+func CreateOrientalDragon(stats BuildingStats) models.NHBuilding {
+	building := models.NHBuilding{
+		Key:         "Oriental Dragon",
+		Name:        "Oriental Dragon",
+		ImgUrl:      "oriental_dragon.webp",
+		Income:      10,
+		Level:       1,
+		UpgradeCost: 4000000,
+
+		IncomeScale:      1.5,
+		UpgradeCostScale: 1.1,
 	}
+	return *maybeRandomizeStats(&building, stats)
+}
+
+func CreateEricClapton(stats BuildingStats) models.NHBuilding {
+	building := models.NHBuilding{
+		Key:         "Eric Clapton",
+		Name:        "Eric Clapton",
+		ImgUrl:      "eric_clapton.webp",
+		Income:      20,
+		Level:       1,
+		UpgradeCost: 2000,
+
+		IncomeScale:      1.1,
+		UpgradeCostScale: 1.1,
+	}
+
+	return *maybeRandomizeStats(&building, stats)
+}
+
+func CreateØysteinSunde(stats BuildingStats) models.NHBuilding {
+	building := models.NHBuilding{
+		Key:         "Øystein Sunde",
+		Name:        "Øystein Sunde",
+		ImgUrl:      "oystein_sunde.webp",
+		Income:      30,
+		Level:       1,
+		UpgradeCost: 3000,
+
+		IncomeScale:      1.1,
+		UpgradeCostScale: 1.1,
+	}
+
+	return *maybeRandomizeStats(&building, stats)
+}
+
+func maybeRandomizeStats(building *models.NHBuilding, stats BuildingStats) *models.NHBuilding {
+	if stats == RandomStats {
+		building.RandomizeStats()
+	}
+	return building
 }
