@@ -21,7 +21,10 @@ func HandleCommand(command models.Command) error {
 	case "chat":
 		Chat(command)
 	case "building.upgrade":
-		BuildingUpgrade(command)
+		err := BuildingUpgrade(command)
+		if err != nil {
+			return err
+		}
 	case "samba.score":
 		ScoreUpdate(command)
 	case "cheats.loot":
