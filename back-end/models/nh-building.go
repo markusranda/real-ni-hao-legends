@@ -1,13 +1,17 @@
 package models
 
 import (
+	"fmt"
+	"github.com/google/uuid"
+	"math"
 	"math/rand"
 )
 
 type NHBuilding struct {
-	Key    string `json:"key"`
-	Name   string `json:"name"`
-	ImgUrl string `json:"imgUrl"`
+	Key      string    `json:"key"`
+	UniqueId uuid.UUID `json:"uniqueId"`
+	Name     string    `json:"name"`
+	ImgUrl   string    `json:"imgUrl"`
 
 	Income      float64 `json:"income"`
 	Level       float64 `json:"level"`
@@ -24,16 +28,27 @@ type NHBuilding struct {
 }
 
 func (n *NHBuilding) RandomizeStats() {
-	n.Income = n.Income - n.Income*(rand.Float64()-0.5)
-	n.UpgradeCost = n.UpgradeCost - n.UpgradeCost*(rand.Float64()-0.5)
+	n.Income = math.Floor(n.Income - n.Income*(rand.Float64()-0.5))
+	n.UpgradeCost = math.Floor(n.UpgradeCost - n.UpgradeCost*(rand.Float64()-0.5))
 
-	n.IncomeScale = n.IncomeScale - n.IncomeScale*((rand.Float64()/-0.5)/5)
-	n.UpgradeCostScale = n.UpgradeCostScale - n.UpgradeCostScale*((rand.Float64()/-0.5)/5)
+	n.IncomeScale = math.Floor(n.IncomeScale-n.IncomeScale*((rand.Float64()/-0.5)/5)*100) / 100
+	n.UpgradeCostScale = math.Floor(n.UpgradeCostScale-n.UpgradeCostScale*((rand.Float64()/-0.5)/5)*100) / 100
 }
 
 func (n *NHBuilding) Upgrade() {
-	n.Income = n.Income * n.IncomeScale
-	n.UpgradeCost = n.UpgradeCost * n.UpgradeCostScale
+	n.Income = math.Floor(n.Income * n.IncomeScale)
+	n.UpgradeCost = math.Floor(n.UpgradeCost * n.UpgradeCostScale)
 
 	n.Level++
+}
+
+type Buildings []NHBuilding
+
+func (b Buildings) FindById(key string) (*NHBuilding, error) {
+	for _, building := range b {
+		if building.Key == key {
+			return &building, nil
+		}
+	}
+	return nil, fmt.Errorf("building with id %s not found", key)
 }

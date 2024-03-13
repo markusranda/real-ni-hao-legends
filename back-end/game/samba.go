@@ -4,7 +4,7 @@ import (
 	"ni-hao-legends/models"
 )
 
-func ScoreUpdate(command models.Command) {
+func ScoreUpdate(command models.Command) error {
 	userId, ok := command.Data["userId"].(string)
 	if !ok {
 		panic("Everybody leave the building, there is no userId!!!")
@@ -24,4 +24,6 @@ func ScoreUpdate(command models.Command) {
 	if score.Score > 0 {
 		State.Players[userId].Inventory.Buildings = append(State.Players[userId].Inventory.Buildings, GetRandomLoot())
 	}
+
+	return nil
 }

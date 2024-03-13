@@ -1,4 +1,4 @@
-import { NHCommand } from '@/models/nh-command'
+import {NHCommand, NHSendCommand} from '@/models/nh-command'
 import { GameState } from '@/models/nh-gamestate'
 import { NHSamba } from '@/models/nh-samba'
 import { defineStore } from 'pinia'
@@ -88,13 +88,16 @@ export const useWebsocket = defineStore('websocket', {
       const otherPlayers = wsMessage.Players
       delete otherPlayers?.[userId]
 
+      console.log("hello")
+      console.log(wsMessage.Commands)
       if (partial) game.state = { ...game.state, ...partial }
       if (otherPlayers) game.otherPlayers = otherPlayers
       if (wsMessage.Chat?.Messages) game.chat = wsMessage.Chat?.Messages
       if (wsMessage.Samba) game.samba = wsMessage.Samba
       if (wsMessage.Commands) game.commands = wsMessage.Commands
     },
-    send(message: NHCommand) {
+    send(message: NHSendCommand) {
+      (message as any).userId = localStorage.getItem('UserId')
       this.ws?.send(JSON.stringify(message))
     }
   }

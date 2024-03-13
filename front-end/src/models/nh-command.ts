@@ -1,6 +1,9 @@
-export interface NHCommand {
-  type: string
+export interface NHCommand extends NHSendCommand{
   userId: string
-  data?: any
   time: number
+}
+
+export interface NHSendCommand {
+  type: string
+  data?: any
 }

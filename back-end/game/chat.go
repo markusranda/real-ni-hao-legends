@@ -2,7 +2,7 @@ package game
 
 import "ni-hao-legends/models"
 
-func Chat(command models.Command) {
+func Chat(command models.Command) error {
 	message := command.Data["message"].(string)
 	msgType := command.Data["type"].(string)
 	user := State.Players[command.PlayerId].Town.Name
@@ -21,4 +21,6 @@ func Chat(command models.Command) {
 
 	// Append the new message
 	State.Chat.Messages = append(State.Chat.Messages, newMessage)
+
+	return nil
 }

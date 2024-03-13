@@ -11,7 +11,6 @@ import (
 var npcConnections = make(map[string]*websocket.Conn)
 
 func ConnectNpcToWs(npc npc) {
-	// Replace with your actual server URL
 	url := "ws://localhost:8080/ws"
 
 	var c *websocket.Conn

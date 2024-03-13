@@ -6,7 +6,7 @@ import (
 	"ni-hao-legends/models"
 )
 
-func Init(command models.Command) {
+func Init(command models.Command) error {
 	/*
 		Add player to game state
 	*/
@@ -26,4 +26,6 @@ func Init(command models.Command) {
 			},
 		}
 	}
+
+	return nil
 }
