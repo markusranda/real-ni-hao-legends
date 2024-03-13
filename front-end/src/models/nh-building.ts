@@ -1,5 +1,6 @@
 export interface NHBuilding {
   key: string
+  uniqueId: string
   name: string
   imgUrl: string
   income: number

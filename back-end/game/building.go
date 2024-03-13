@@ -26,12 +26,9 @@ func BuildingUpgrade(command models.Command) error {
 }
 
 func BuildingMoveToTown(command models.Command) error {
-	id, ok := command.Data["buildingId"].(string)
-	if !ok {
-		panic("buildingId is not a string")
-	}
-	uniqueId, ok := command.Data["buildingUniqueKey"].(uuid.UUID)
-	if !ok {
+	uniqueIdString := command.Data["uniqueId"].(string)
+	uniqueId, err := uuid.Parse(uniqueIdString)
+	if err != nil {
 		panic("buildingUniqueKey is not an UUID")
 	}
 	playerId := command.PlayerId
@@ -49,11 +46,11 @@ func BuildingMoveToTown(command models.Command) error {
 		panic("building not found in inventory")
 	}
 
-	_, buildingAlreadyExistsInTown := state.Town.Buildings[id]
+	_, buildingAlreadyExistsInTown := state.Town.Buildings[building.Key]
 	if buildingAlreadyExistsInTown {
 		return fmt.Errorf("building already in town")
 	} else {
-		state.Town.Buildings[id] = *building
+		state.Town.Buildings[building.Key] = *building
 	}
 
 	return nil

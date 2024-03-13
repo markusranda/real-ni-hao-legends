@@ -19,10 +19,11 @@ const items = computed(() => {
 })
 
 function moveToTown(building: NHBuilding) {
+  console.log(building)
   useWebsocket().send({
     type: 'building.move_to_town',
     data: {
-      buildingId: building.key
+      uniqueId: building.uniqueId
     }
   })
 }
@@ -31,7 +32,7 @@ function moveToTown(building: NHBuilding) {
 <template>
   <div>
     <div v-for="(item, i) in items" :key="i">
-      <BuildingV2 :building="item" :disabled="true" @click="moveToTown"/>
+      <BuildingV2 :building="item" :disabled="true" @click="() => moveToTown(item)"/>
       <div>Count: {{ item.count }}</div>
     </div>
   </div>
