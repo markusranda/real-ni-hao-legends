@@ -31,8 +31,9 @@ func (n *NHBuilding) RandomizeStats() {
 	n.Income = math.Floor(n.Income - n.Income*(rand.Float64()-0.5))
 	n.UpgradeCost = math.Floor(n.UpgradeCost - n.UpgradeCost*(rand.Float64()-0.5))
 
-	n.IncomeScale = math.Floor(n.IncomeScale-n.IncomeScale*((rand.Float64()/-0.5)/5)*100) / 100
-	n.UpgradeCostScale = math.Floor(n.UpgradeCostScale-n.UpgradeCostScale*((rand.Float64()/-0.5)/5)*100) / 100
+	// todo create working randomizer when i am well rested
+	//n.IncomeScale = math.Floor(n.IncomeScale-n.IncomeScale*((rand.Float64()/-0.5)/5)*100) / 100
+	//n.UpgradeCostScale = math.Floor(n.UpgradeCostScale-n.UpgradeCostScale*((rand.Float64()/-0.5)/5)*100) / 100
 }
 
 func (n *NHBuilding) Upgrade() {

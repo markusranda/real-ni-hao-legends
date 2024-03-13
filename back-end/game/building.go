@@ -20,6 +20,7 @@ func BuildingUpgrade(command models.Command) error {
 	}
 
 	building.Upgrade()
+	state.Town.Money -= building.UpgradeCost
 
 	state.Town.Buildings[id] = building
 	return nil
