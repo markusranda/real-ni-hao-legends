@@ -31,6 +31,7 @@ func BuildingMoveToTown(command models.Command) error {
 	if err != nil {
 		panic("buildingUniqueKey is not an UUID")
 	}
+
 	playerId := command.PlayerId
 	state := State.Players[playerId]
 
@@ -51,6 +52,14 @@ func BuildingMoveToTown(command models.Command) error {
 		return fmt.Errorf("building already in town")
 	} else {
 		state.Town.Buildings[building.Key] = *building
+		// Remove the building from the inventory
+		for i, b := range state.Inventory.Buildings {
+			if b.Key == building.Key {
+				// Remove the building from the slice while preserving the order
+				state.Inventory.Buildings = append(state.Inventory.Buildings[:i], state.Inventory.Buildings[i+1:]...)
+				break
+			}
+		}
 	}
 
 	return nil
