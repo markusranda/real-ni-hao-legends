@@ -13,7 +13,7 @@ export const useWebsocket = defineStore('websocket', {
   }),
   actions: {
     init() {
-      const ws = new WebSocket(`ws://${window.location.hostname}:8080/ws`)
+      const ws = import.meta.env.PROD ? new WebSocket(`ws://${window.location.hostname}/ws`) : new WebSocket(`ws://${window.location.hostname}:8080/ws`)
 
       if (!ws)
         throw Error("Couldn't establish a connection via websocket, what a sad time to be alive...")
