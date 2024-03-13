@@ -1,12 +1,14 @@
 package buildings
 
 import (
+	"github.com/google/uuid"
 	"ni-hao-legends/models"
 )
 
 func NewBuilding(key string, name string, imgUrl string, income float64, upgradeCost float64, incomeScale float64, upgradeCostScale float64, stats BuildingStats) models.NHBuilding {
 	building := models.NHBuilding{
 		Level:       1,
+		UniqueId:    uuid.New(),
 		Key:         key,
 		Name:        name,
 		ImgUrl:      imgUrl,

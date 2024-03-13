@@ -1,13 +1,16 @@
 package models
 
 import (
+	"fmt"
+	"github.com/google/uuid"
 	"math/rand"
 )
 
 type NHBuilding struct {
-	Key    string `json:"key"`
-	Name   string `json:"name"`
-	ImgUrl string `json:"imgUrl"`
+	Key      string    `json:"key"`
+	UniqueId uuid.UUID `json:"uniqueId"`
+	Name     string    `json:"name"`
+	ImgUrl   string    `json:"imgUrl"`
 
 	Income      float64 `json:"income"`
 	Level       float64 `json:"level"`
@@ -36,4 +39,15 @@ func (n *NHBuilding) Upgrade() {
 	n.UpgradeCost = n.UpgradeCost * n.UpgradeCostScale
 
 	n.Level++
+}
+
+type Buildings []NHBuilding
+
+func (b Buildings) FindById(key string) (*NHBuilding, error) {
+	for _, building := range b {
+		if building.Key == key {
+			return &building, nil
+		}
+	}
+	return nil, fmt.Errorf("building with id %s not found", key)
 }

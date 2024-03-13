@@ -112,7 +112,6 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 		var cmd models.Command
 
 		err = json.Unmarshal(message, &cmd)
-		log.Println(cmd.Time)
 		cmd.Time = time.Now().Unix()
 		if err != nil {
 			log.Println("❌️🥵 error: %v", err)
@@ -125,7 +124,7 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Updates the game state
-		err = game.HandleCommand(cmd)
+		err = game.HandleCommandV2(cmd)
 
 		if err != nil {
 			log.Println("❌️🥵error handling command: %v", err)
