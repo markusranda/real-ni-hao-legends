@@ -3,6 +3,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useGame } from '@/store/game'
 import { NHCommand } from '@/models/nh-command'
 import { useWebsocket } from '@/store/websocketStore'
+import Button from "@/components/ui/button/Button.vue";
 
 const chat = computed(() => useGame().chat)
 const currentMessage = ref('')
@@ -54,8 +55,18 @@ onMounted(() => {
           @keydown.enter="sendChatMessage"
           class="col-2"
         />
-        <button @click="sendChatMessage">send</button>
+        <Button @click="sendChatMessage">send</Button>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.the-game-chat {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: linear-gradient(45deg, #f3ec78, #ee1cff);
+}
+</style>

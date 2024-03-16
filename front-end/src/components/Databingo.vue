@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="handleClickPlay">Play databingo</button>
+    <Button @click="handleClickPlay">Databingo</Button>
 
     <Teleport to="body">
       <div v-if="showDatabingo">
@@ -17,9 +17,11 @@
 <script lang="ts">
 import DatabingoAgeConfirm from './DatabingoAgeConfirm.vue'
 import DatabingoGame from './DatabingoGame.vue'
+import Button from "@/components/ui/button/Button.vue";
 
 export default {
   components: {
+    Button,
     DatabingoAgeConfirm,
     DatabingoGame
   },

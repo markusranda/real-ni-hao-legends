@@ -1,18 +1,19 @@
 <template>
   <div>
-    <button @click="handleClickOpen">Do the dance, take a chance</button>
+    <Button @click="handleClickOpen">Samba</Button>
 
     <Teleport to="body">
-      <SambaTimeGame v-if="show" :handleClickClose="handleClickClose" />
+      <SambaTimeGame v-if="show" :handleClickClose="handleClickClose"/>
     </Teleport>
   </div>
 </template>
 
 <script lang="ts">
 import SambaTimeGame from './SambaTimeGame.vue'
+import Button from "@/components/ui/button/Button.vue";
 
 export default {
-  components: { SambaTimeGame },
+  components: {Button, SambaTimeGame},
   data() {
     return {
       show: false

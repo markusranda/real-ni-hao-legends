@@ -88,9 +88,6 @@ export const useWebsocket = defineStore('websocket', {
 
       const otherPlayers = wsMessage.Players
       delete otherPlayers?.[userId]
-
-      console.log("hello")
-      console.log(wsMessage.Commands)
       if (partial) game.state = { ...game.state, ...partial }
       if (otherPlayers) game.otherPlayers = otherPlayers
       if (wsMessage.Chat?.Messages) game.chat = wsMessage.Chat?.Messages

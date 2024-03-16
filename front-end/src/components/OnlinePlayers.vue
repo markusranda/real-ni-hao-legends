@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { useGame } from '@/store/game'
-import { computed, onMounted, ref, watch } from 'vue'
-import {send} from "vite";
+import {useGame} from '@/store/game'
+import {computed, onMounted, ref, watch} from 'vue'
 import {useWebsocket} from "@/store/websocketStore";
 import {NHCommand} from "@/models/nh-command";
 
@@ -118,7 +117,7 @@ function getLoot() {
         <span> {{ formatUUID(command.userId) }}</span>
         <span style="margin-left: 4px"> {{ formatTime(command.time) }}</span>
       </li>
-      <button @click="getLoot">LOOT</button>
+      <Button @click="getLoot">LOOT</Button>
     </ul>
   </div>
 </template>

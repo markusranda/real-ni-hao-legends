@@ -1,13 +1,16 @@
 <template>
   <div class="samba-time-game-end-title">
     <span>YOU DIED</span>
-    <button @click="handleClick">retry</button>
+    <Button @click="handleClick">retry</Button>
     <audio id="game-over-player" preload="auto" src="du-har-tapt-echo.mp3"></audio>
   </div>
 </template>
 
 <script lang="ts">
+import Button from "@/components/ui/button/Button.vue";
+
 export default {
+  components: {Button},
   emits: ['retry'],
   mounted() {
     const audio = document.getElementById('game-over-player') as undefined | HTMLAudioElement

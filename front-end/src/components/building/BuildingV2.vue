@@ -7,10 +7,10 @@
         <span>{{ `level: ${building.level}` }}</span>
       </div>
       <div v-if="!disabled" >
-        <button :class="{ unavailable: !canUpgrade }" @click="handleClickUpgradeBuilding">
+        <Button :class="{ unavailable: !canUpgrade }" @click="handleClickUpgradeBuilding">
           {{ building.upgradeCost }} $
-        </button>
-        <button @click="handleClickSellBuilding">sell</button>
+        </Button>
+        <Button @click="handleClickSellBuilding">sell</Button>
       </div>
       <div v-else>
       </div>

@@ -7,7 +7,7 @@
       <p>‼️‼️GAMBLING IS NOT FOR KIDS ‼️‼️ PLEASE CONFIRM THAT YOU ARE 18 YEARS OR OLDER</p>
     </template>
     <template #footer>
-      <button @click="() => handleAgeConfirmation()">Okay</button>
+      <Button @click="() => handleAgeConfirmation()">Okay</Button>
     </template>
   </Modal>
 </template>

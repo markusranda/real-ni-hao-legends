@@ -3,7 +3,7 @@
     <h1>Who are you today?</h1>
     <div class="d-flex gap-1">
       <input v-model="townName" type="text" />
-      <button @click="handleClickSubmit">Submit</button>
+      <Button @click="handleClickSubmit">Submit</Button>
     </div>
   </div>
 </template>
