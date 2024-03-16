@@ -1,14 +1,41 @@
 <script setup lang="ts">
 
+import Button from "@/components/ui/button/Button.vue";
+import {ref} from "vue";
+
 const audio = new Audio("https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-46416/zapsplat_multimedia_button_click_005_53866.mp3");
 
 const props = defineProps<{
-  canUpgrade: boolean |undefined,
+  canUpgrade: boolean | undefined,
 }>()
+
+const disabled = ref(false)
+
+function warnCantBuy() {
+  disabled.value = true
+  setTimeout(() => {
+    disabled.value = false
+  }, 1500)
+}
+
+function playAudio() {
+  if (props.canUpgrade) {
+    audio.play()
+  }
+}
+
+function handleClick() {
+  if (props.canUpgrade) {
+    playAudio()
+  } else {
+    console.log('Cant upgrade')
+    warnCantBuy()
+  }
+}
 </script>
 
 <template>
-  <button :data-can-upgrade="props.canUpgrade" @click="audio.play()">
+  <button :data-can-upgrade="props.canUpgrade" @click="handleClick()" :class="{ shake: disabled }">
     <slot/>
   </button>
 </template>
@@ -37,11 +64,14 @@ button {
   background: var(--gradient);
   border: 0;
   position: relative;
-  border-radius: var(--border-radius);
   z-index: 1;
   text-decoration: none;
   cursor: pointer;
   border-radius: 0 0 24px 24px;
+
+  &[data-can-upgrade="false"] {
+    color: #838383;
+  }
 }
 
 /* Light notch */
@@ -72,34 +102,46 @@ button {
 }
 
 /* Light notch on button click */
-button:active::after {
+button:active::after[data-can-upgrade="true"] {
   width: 140px; /* Adjust this value to your desired width */
 }
 
 /* Button on click */
-button:active {
+button:active[data-can-upgrade="true"] {
   color: #EAFFFC;
   background: rgb(238, 174, 202);
   background: linear-gradient(190deg, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 0.6719999999999999) 100%);
 }
 
-/* Light notch on button click */
-button:active::after {
-  [data-can-upgrade="true"] {
-    background: #EBFDFF;
-    border: .5px solid #34FFAA;
-    box-shadow: 0px -22px 26px rgba(0, 255, 163, 0.43), 0px 22px 26px rgba(75, 218, 166, 0.4), 0px -22px 20px rgba(89, 255, 195, 0.1), 0px 0px 16px #59FFC3;
+.shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
   }
 }
 
-/* Light notch on button hover */
-button:hover::after {
-  [data-can-upgrade="true"] {
-    background: #EBFDFF;
-    border: .5px solid #34FFAA;
-    box-shadow: 0px -22px 26px rgba(0, 255, 163, 0.43), 0px 22px 26px rgba(75, 218, 166, 0.4), 0px -22px 20px rgba(89, 255, 195, 0.1), 0px 0px 16px #59FFC3;
-  }
+
+button:active[data-can-upgrade="false"] {
 }
-
-
 </style>
