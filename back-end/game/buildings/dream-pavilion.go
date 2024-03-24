@@ -5,7 +5,7 @@ import (
 	"ni-hao-legends/models"
 )
 
-func NewBuilding(key string, name string, imgUrl string, income float64, upgradeCost float64, incomeScale float64, upgradeCostScale float64, stats BuildingStats) models.NHBuilding {
+func NewBuilding(key string, name string, imgUrl string, income float64, upgradeCost float64, incomeScale float64, upgradeCostScale float64, stats BuildingStats, rarity models.Rarity) models.NHBuilding {
 	building := models.NHBuilding{
 		Level:       1,
 		UniqueId:    uuid.New(),
@@ -37,6 +37,7 @@ func CreateDreamPavilion(
 		1.1,
 		1.1,
 		stats,
+		models.Common,
 	)
 }
 
@@ -50,6 +51,7 @@ func CreateHoleInTheGround(stats BuildingStats) models.NHBuilding {
 		1.1,
 		1.1,
 		stats,
+		models.Uncommon,
 	)
 }
 
@@ -63,6 +65,7 @@ func CreateNMSGjenbruk(stats BuildingStats) models.NHBuilding {
 		1.1,
 		1.1,
 		stats,
+		models.Rare,
 	)
 }
 
@@ -76,6 +79,7 @@ func CreateOrientalDragon(stats BuildingStats) models.NHBuilding {
 		1.5,
 		1.1,
 		stats,
+		models.Rare,
 	)
 }
 
@@ -89,6 +93,7 @@ func CreateEricClapton(stats BuildingStats) models.NHBuilding {
 		1.1,
 		1.1,
 		stats,
+		models.Common,
 	)
 }
 
@@ -102,6 +107,7 @@ func CreateØysteinSunde(stats BuildingStats) models.NHBuilding {
 		1.1,
 		1.1,
 		stats,
+		models.Epic,
 	)
 }
 
@@ -115,6 +121,7 @@ func CreateKjellElvis(stats BuildingStats) models.NHBuilding {
 		1.1,
 		1.1,
 		stats,
+		models.Uncommon,
 	)
 }
 
@@ -128,6 +135,7 @@ func CreateFruitCasket(stats BuildingStats) models.NHBuilding {
 		1.1,
 		1.1,
 		stats,
+		models.Legendary,
 	)
 }
 

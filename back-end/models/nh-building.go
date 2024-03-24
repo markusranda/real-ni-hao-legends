@@ -8,14 +8,14 @@ import (
 )
 
 type NHBuilding struct {
-	Key      string    `json:"key"`
-	UniqueId uuid.UUID `json:"uniqueId"`
-	Name     string    `json:"name"`
-	ImgUrl   string    `json:"imgUrl"`
-
-	Income      float64 `json:"income"`
-	Level       float64 `json:"level"`
-	UpgradeCost float64 `json:"upgradeCost"`
+	Key         string    `json:"key"`
+	UniqueId    uuid.UUID `json:"uniqueId"`
+	Name        string    `json:"name"`
+	ImgUrl      string    `json:"imgUrl"`
+	Rarity      int       `json:"rarity"`
+	Income      float64   `json:"income"`
+	Level       float64   `json:"level"`
+	UpgradeCost float64   `json:"upgradeCost"`
 
 	// scaling parameters
 	IncomeScale      float64 `json:"incomeScale"`
@@ -26,6 +26,16 @@ type NHBuilding struct {
 	EnhancementSlots     int `json:"enhancementSlots"`
 	UsedEnhancementSlots int `json:"usedEnhancementSlots"`
 }
+
+type Rarity int
+
+const (
+	Common Rarity = iota
+	Uncommon
+	Rare
+	Epic
+	Legendary
+)
 
 func (n *NHBuilding) RandomizeStats() {
 	n.Income = math.Floor(n.Income - n.Income*(rand.Float64()-0.5))
