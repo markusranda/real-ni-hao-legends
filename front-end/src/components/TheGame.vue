@@ -1,4 +1,5 @@
 <template>
+  <Nuke/>
   <button class="inventory-button" @click="isInventory = !isInventory">
     Inventory
   </button>
@@ -83,9 +84,12 @@ import SambaTime from './SambaTime.vue'
 import OnlinePlayers from './OnlinePlayers.vue'
 import Inventory from "@/components/Inventory.vue";
 import Button from "@/components/ui/button/Button.vue";
+import {useWebsocket} from "@/store/websocketStore";
+import Nuke from "@/components/ui/Nuke.vue";
 
 export default defineComponent({
   components: {
+    Nuke,
     Button,
     Inventory,
     Building,
@@ -131,7 +135,12 @@ export default defineComponent({
       else this.donateRetirementFund = inputValue
     },
     handleClickNuke() {
-      alert(`${this.nukeTarget} is now nuked to death, what a shame...`)
+      useWebsocket().send({
+        type: 'effect.nuke',
+        data: {
+          target: this.nukeTarget
+        }
+      })
       this.nukeTarget = ''
     },
     handleClickEventExit() {

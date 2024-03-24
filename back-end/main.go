@@ -157,7 +157,6 @@ func lønningsdag() {
 	defer ticker.Stop()
 
 	for {
-		log.Printf("🕒 update money")
 		select {
 		case <-ticker.C:
 			for _, playerState := range game.State.Players {

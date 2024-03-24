@@ -1,5 +1,7 @@
 package models
 
+import "github.com/google/uuid"
+
 type GameState struct {
 	Players  map[PlayerId]*PlayerGameState
 	Chat     Chat
@@ -7,9 +9,10 @@ type GameState struct {
 	Commands []Command
 }
 type PlayerGameState struct {
-	RetirementFund float64   `json:"retirementFund"`
-	Inventory      Inventory `json:"inventory"`
-	Town           NHTown    `json:"town"`
+	RetirementFund float64    `json:"retirementFund"`
+	Effects        []NHEffect `json:"effects"`
+	Inventory      Inventory  `json:"inventory"`
+	Town           NHTown     `json:"town"`
 }
 
 type Inventory struct {
@@ -25,4 +28,10 @@ type ChatMessage struct {
 	UserName string `json:"userName"`
 	UserId   string `json:"userId"`
 	Type     string `json:"type"`
+}
+
+type NHEffect struct {
+	EffectType string    `json:"effectType"`
+	Timestamp  int64     `json:"timestamp"`
+	UUID       uuid.UUID `json:"uuid"`
 }

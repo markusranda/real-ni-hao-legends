@@ -35,6 +35,7 @@
 <script lang="ts">
 import Modal from './Modal.vue'
 import BingoBall from './BingoBall.vue'
+import {useWebsocket} from "@/store/websocketStore";
 
 interface BingoTile {
   number: number | undefined
@@ -120,6 +121,9 @@ export default {
       this.numberMatrix[colIndex][cellIndex].checked = true
     },
     rollBall() {
+      useWebsocket().send({
+        type: 'effect.roll_ball'
+      })
       this.ballRolling = true
       setTimeout(() => {
         this.ballRolling = false
