@@ -13,6 +13,8 @@ var possibilities = []func(stats buildings.BuildingStats) models.NHBuilding{
 	buildings.CreateOrientalDragon,
 	buildings.CreateEricClapton,
 	buildings.CreateØysteinSunde,
+	buildings.CreateFruitCasket,
+	buildings.CreateKjellElvis,
 }
 
 func GetRandomLoot() models.NHBuilding {
