@@ -44,6 +44,7 @@
           <div class="game-buttons">
             <Databingo/>
             <SambaTime/>
+            <Quiz />
           </div>
           <Separator/>
 
@@ -81,6 +82,7 @@ import Chat from './Chat.vue'
 import Separator from './Separator.vue'
 import Databingo from './Databingo.vue'
 import SambaTime from './SambaTime.vue'
+import Quiz from './Quiz.vue'
 import OnlinePlayers from './OnlinePlayers.vue'
 import Inventory from "@/components/Inventory.vue";
 import Button from "@/components/ui/button/Button.vue";
@@ -98,6 +100,7 @@ export default defineComponent({
     Separator,
     Databingo,
     SambaTime,
+    Quiz,
     OnlinePlayers
   },
   data() {
