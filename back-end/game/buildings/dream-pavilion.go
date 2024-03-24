@@ -83,7 +83,7 @@ func CreateEricClapton(stats BuildingStats) models.NHBuilding {
 	return NewBuilding(
 		"Eric Clapton",
 		"Eric Clapton",
-		"eric_clapton.webp",
+		"eric_clapton.png",
 		20,
 		2000,
 		1.1,
@@ -96,7 +96,7 @@ func CreateØysteinSunde(stats BuildingStats) models.NHBuilding {
 	return NewBuilding(
 		"Øystein Sunde",
 		"Øystein Sunde",
-		"oystein_sunde.webp",
+		"sunde.png",
 		30,
 		3000,
 		1.1,

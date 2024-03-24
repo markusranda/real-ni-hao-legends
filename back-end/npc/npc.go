@@ -46,6 +46,7 @@ func InitNpcBehaviour() {
 			delay := time.Duration(5) * time.Second
 			time.Sleep(delay)
 			for _, npc := range npcs {
+
 				SendCommandOverWs(models.Command{
 					PlayerId: npc.id,
 					Action:   "building.upgrade",
@@ -60,7 +61,7 @@ func InitNpcBehaviour() {
 	go func() {
 		for {
 			state := &game.State
-			delay := time.Duration(rand.Intn(60)+1) * time.Second
+			delay := time.Duration(rand.Intn(180)+1) * time.Second
 			time.Sleep(delay)
 
 			//pick a random npc
