@@ -30,7 +30,7 @@ const rarityColor = computed(() => {
     case 0: return 'grey';
     case 1: return 'green';
     case 2: return 'blue';
-    case 3: return 'purple';
+    case 3: return '#da00da'; // vibrant purple
     case 4: return 'gold';
     default: return 'grey';
   }

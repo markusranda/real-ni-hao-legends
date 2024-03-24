@@ -17,6 +17,17 @@ const props = defineProps<{
   disabled: boolean
 }>()
 
+const rarityColor = computed(() => {
+  switch (building.rarity) {
+    case 0: return 'grey';
+    case 1: return 'green';
+    case 2: return 'blue';
+    case 3: return '#da00da'; // vibrant purple
+    case 4: return 'gold';
+    default: return 'grey';
+  }
+});
+
 const building = props.building
 const money = computed(() => useGame().state.town.money)
 function handleClickUpgradeBuilding() {
@@ -39,6 +50,8 @@ const backgroundImageStyle = computed(() => ({
   backgroundImage: `url(${building.imgUrl})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
+  border: '2px solid',
+  borderColor: rarityColor.value
 }));
 </script>
 
