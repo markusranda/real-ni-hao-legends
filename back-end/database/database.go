@@ -14,7 +14,7 @@ func InitDB() error {
 	log.Println("Initiliazing database")
 
 	// Open a connection to the SQLite database.
-	db, err := sql.Open("sqlite", "mydatabase.db")
+	db, err := sql.Open("sqlite", "nihao.db")
 	if err != nil {
 		return err
 	}

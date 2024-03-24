@@ -52,12 +52,13 @@ func InitGameState() {
 			fmt.Println("Error querying database:", err)
 			return
 		}
+	} else {
+		err = json.Unmarshal([]byte(stateData), &State)
+		if err != nil {
+			log.Fatal("Error unmarshalling state data:", err)
+		}
 	}
 
-	err = json.Unmarshal([]byte(stateData), &State)
-	if err != nil {
-		log.Fatal("Error unmarshalling state data:", err)
-	}
 }
 
 func CloseGameState() {
