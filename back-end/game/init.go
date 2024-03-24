@@ -17,6 +17,7 @@ func Init(command models.Command) error {
 		State.Players[playerId] = &models.PlayerGameState{
 			Inventory:      models.Inventory{Buildings: []models.NHBuilding{}},
 			RetirementFund: 0.0,
+			Effects:        []models.NHEffect{},
 			Town: models.NHTown{
 				Money: 0.0,
 				Name:  command.Data["name"].(string),

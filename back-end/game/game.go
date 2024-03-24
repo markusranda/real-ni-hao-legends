@@ -21,6 +21,8 @@ var handlers = map[string]func(models.Command) error{
 	"building.move_to_inventory": BuildingMoveToInventory,
 	"samba.score":                ScoreUpdate,
 	"cheats.loot":                Loot,
+	"effect.nuke":                Nuke,
+	"effect.roll_ball":           RollBall,
 }
 
 func HandleCommand(command models.Command) error {
