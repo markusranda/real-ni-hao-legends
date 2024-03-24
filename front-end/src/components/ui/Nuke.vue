@@ -20,6 +20,7 @@ class Particle {
     this.y += this.ySpeed;
 
     // If the particle is outside the canvas, reset its position
+    if (!canvas.value) throw Error("NO CANVAS, HILFE")
     if (this.x < 0 || this.x > canvas.value?.width || this.y < 0 || this.y > canvas.value?.height) {
       this.x = Math.random() * (canvas.value?.width || 0);
       this.y = Math.random() * (canvas.value?.height || 0);
