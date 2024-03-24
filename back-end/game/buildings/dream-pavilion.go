@@ -109,7 +109,7 @@ func CreateKjellElvis(stats BuildingStats) models.NHBuilding {
 	return NewBuilding(
 		"Kjell Elvis",
 		"Kjell Elvis",
-		"elvis.png",
+		"kjell_elvis.png",
 		40,
 		4000,
 		1.1,
