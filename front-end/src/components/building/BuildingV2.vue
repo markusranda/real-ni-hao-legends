@@ -1,20 +1,6 @@
 <template>
   <div class="house" :style="backgroundImageStyle" @mouseover="showStats = true" @mouseleave="showStats = false">
-    <h5>{{ building.name }}</h5>
-    <div class="d-flex flex-column">
-      <div class="stats" v-show="showStats">
-        <span>{{ `income: ${building.income}` }}</span>
-        <span>{{ `level: ${building.level}` }}</span>
-      </div>
-      <div v-if="!disabled" >
-        <Button :class="{ unavailable: !canUpgrade }" @click="handleClickUpgradeBuilding">
-          {{ building.upgradeCost }} $
-        </Button>
-        <Button @click="handleClickSellBuilding">sell</Button>
-      </div>
-      <div v-else>
-      </div>
-    </div>
+
   </div>
 </template>
 
@@ -72,7 +58,6 @@ const backgroundImageStyle = computed(() => ({
   display: flex;
   flex-direction: column;
   border-radius: 24px;
-  width: 100px;
 
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   background: #f5f5f5;

@@ -67,7 +67,7 @@ func BuildingMoveToTown(command models.Command) error {
 }
 
 func BuildingMoveToInventory(command models.Command) error {
-	id, ok := command.Data["buildingId"].(string)
+	id, ok := command.Data["uniqueId"].(string)
 	if !ok {
 		panic("buildingId is not a string")
 	}

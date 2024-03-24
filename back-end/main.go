@@ -147,7 +147,7 @@ func BroadcastGameState() {
 // function that updates the money of each connected player every second
 func lønningsdag() {
 	log.Printf("🕒 starting lønningsdag")
-	ticker := time.NewTicker(10 * time.Second)
+	ticker := time.NewTicker(1 * time.Second)
 	defer ticker.Stop()
 
 	for {
