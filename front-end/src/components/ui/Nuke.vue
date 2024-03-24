@@ -47,8 +47,10 @@ watch(
         // Reset particles
         particles = [];
         // Draw and animate smoke
-        drawSmoke(ctx);
-        animate();
+        if (newEffect) {
+          drawSmoke(ctx);
+          animate();
+        }
       }
     }
 );

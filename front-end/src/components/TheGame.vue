@@ -89,8 +89,8 @@ import Nuke from "@/components/ui/Nuke.vue";
 
 export default defineComponent({
   components: {
-    Nuke,
     Button,
+    Nuke,
     Inventory,
     Building,
     TopInfo,
