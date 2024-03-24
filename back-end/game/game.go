@@ -23,7 +23,7 @@ var handlers = map[string]func(models.Command) error{
 	"cheats.loot":                Loot,
 }
 
-func HandleCommandV2(command models.Command) error {
+func HandleCommand(command models.Command) error {
 	log.Printf("Handling command: %+v", command)
 	handler, ok := handlers[command.Action]
 	if !ok {
@@ -38,36 +38,4 @@ func HandleCommandV2(command models.Command) error {
 	}
 
 	return handler(command)
-}
-
-func HandleCommand(command models.Command) error {
-	log.Printf("Handling command: %+v", command)
-	switch command.Action {
-	case "init":
-		Init(command)
-	case "chat":
-		Chat(command)
-	case "building.upgrade":
-		err := BuildingUpgrade(command)
-		if err != nil {
-			return err
-		}
-	case "building.move_to_town":
-		err := BuildingMoveToTown(command)
-		if err != nil {
-			return err
-		}
-	case "building.move_to_inventory":
-		err := BuildingMoveToInventory(command)
-		if err != nil {
-			return err
-		}
-	case "samba.score":
-		ScoreUpdate(command)
-	case "cheats.loot":
-		Loot(command)
-	default:
-		return fmt.Errorf("unknown command action: %s", command.Action)
-	}
-	return nil
 }

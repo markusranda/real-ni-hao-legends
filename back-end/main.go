@@ -124,7 +124,7 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Updates the game state
-		err = game.HandleCommandV2(cmd)
+		err = game.HandleCommand(cmd)
 
 		if err != nil {
 			log.Println("❌️🥵error handling command: %v", err)
