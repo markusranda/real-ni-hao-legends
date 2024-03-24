@@ -1,6 +1,6 @@
 <template>
-  <div class="house">
-    <img :src="building.imgUrl" alt="" srcset="" draggable="false"/>
+  <div class="house" :style="{ borderColor: rarityColor }">
+    <img :src="building.imgUrl" alt="" srcset="" draggable="false" />
     <h5 class="title">{{ building.name }}</h5>
 
     <div class="stats">
@@ -25,6 +25,17 @@ const props = defineProps<{
   buildingId: string
 }>()
 
+const rarityColor = computed(() => {
+  switch (building.value.rarity) {
+    case 0: return 'grey';
+    case 1: return 'green';
+    case 2: return 'blue';
+    case 3: return 'purple';
+    case 4: return 'gold';
+    default: return 'grey';
+  }
+});
+
 const building = computed(() => useGame().state.town.buildings[props.buildingId])
 const money = computed(() => useGame().state.town.money)
 
@@ -33,6 +44,8 @@ function handleClickUpgradeBuilding() {
 }
 
 const canUpgrade = computed(() => building.value.upgradeCost <= money.value)
+
+console.log(building.value.rarity)
 </script>
 
 <style scoped>

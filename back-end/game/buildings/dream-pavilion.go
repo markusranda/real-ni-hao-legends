@@ -14,6 +14,7 @@ func NewBuilding(key string, name string, imgUrl string, income float64, upgrade
 		ImgUrl:      imgUrl,
 		Income:      income,
 		UpgradeCost: upgradeCost,
+		Rarity:      int(rarity),
 
 		IncomeScale:      incomeScale,
 		UpgradeCostScale: upgradeCostScale,

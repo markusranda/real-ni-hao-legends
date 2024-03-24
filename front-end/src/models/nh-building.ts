@@ -7,6 +7,7 @@ export interface NHBuilding {
   level: number
   baseCost: number
   upgradeCost: number
+  rarity: number
 }
 
 export interface NHBuildingCommand {
