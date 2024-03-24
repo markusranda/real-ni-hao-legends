@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import {useGame} from '@/store/game'
-import {computed, onMounted, ref, watch} from 'vue'
-import {useWebsocket} from "@/store/websocketStore";
-import {NHCommand} from "@/models/nh-command";
+import { useGame } from '@/store/game'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useWebsocket } from '@/store/websocketStore'
+import { NHCommand } from '@/models/nh-command'
 
 const players = computed(() => useGame().otherPlayers)
 const commands = computed(() => useGame().commands)
+const showOnlinePlayers = computed(() => localStorage.getItem('debug') === 'true')
 const drag = ref<HTMLDivElement>(null!)
 
 function formatUUID(uuid: string) {
@@ -57,6 +58,7 @@ watch(commands, (newCommands, oldCommands) => {
 
 onMounted(() => {
   const el = drag.value
+  if (!el) return
   let isDown = false
   let offset = [0, 0]
 
@@ -93,13 +95,13 @@ onMounted(() => {
 function getLoot() {
   useWebsocket().send({
     type: 'cheats.loot',
-    userId: localStorage.getItem('UserId')!,
+    userId: localStorage.getItem('UserId')!
   } as NHCommand)
 }
 </script>
 
 <template>
-  <div>
+  <div v-if="showOnlinePlayers">
     <h1>mandem on the net</h1>
     <p>there are {{ Object.keys(players).length }} opps round you</p>
     <li>
@@ -143,7 +145,7 @@ div {
 
   span {
     display: block;
-    font-size: .8em;
+    font-size: 0.8em;
     line-height: 0.8em;
     letter-spacing: 0.05em;
 
@@ -199,6 +201,5 @@ div {
     background: rgba(221, 110, 255, 0.2);
     margin: auto;
   }
-
 }
 </style>
