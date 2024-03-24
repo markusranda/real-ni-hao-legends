@@ -69,18 +69,22 @@ func BuildingMoveToTown(command models.Command) error {
 func BuildingMoveToInventory(command models.Command) error {
 	id, ok := command.Data["uniqueId"].(string)
 	if !ok {
-		panic("buildingId is not a string")
+		fmt.Errorf("no uniqueId in command")
+	}
+	uniqueId, err := uuid.Parse(id)
+	if err != nil {
+		return fmt.Errorf("uniqueId is not a valid UUID")
 	}
 	playerId := command.PlayerId
 	state := State.Players[playerId]
 
-	building, buildingExistsInTown := state.Town.Buildings[id]
-	if !buildingExistsInTown {
-		return fmt.Errorf("building not found in town")
+	for _, building := range state.Town.Buildings {
+		if building.UniqueId == uniqueId {
+			state.Inventory.Buildings = append(state.Inventory.Buildings, building)
+			delete(state.Town.Buildings, building.Name)
+			return nil
+		}
 	}
 
-	state.Inventory.Buildings = append(state.Inventory.Buildings, building)
-	delete(state.Town.Buildings, id)
-
-	return nil
+	return fmt.Errorf("building not found in town")
 }
