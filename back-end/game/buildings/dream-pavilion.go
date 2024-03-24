@@ -105,6 +105,32 @@ func CreateØysteinSunde(stats BuildingStats) models.NHBuilding {
 	)
 }
 
+func CreateKjellElvis(stats BuildingStats) models.NHBuilding {
+	return NewBuilding(
+		"Kjell Elvis",
+		"Kjell Elvis",
+		"kjell_elvis.png",
+		40,
+		4000,
+		1.1,
+		1.1,
+		stats,
+	)
+}
+
+func CreateFruitCasket(stats BuildingStats) models.NHBuilding {
+	return NewBuilding(
+		"Fruit Casket",
+		"Fruit Casket",
+		"fruit_casket.png",
+		50,
+		5000,
+		1.1,
+		1.1,
+		stats,
+	)
+}
+
 func maybeRandomizeStats(building *models.NHBuilding, stats BuildingStats) *models.NHBuilding {
 	if stats == RandomStats {
 		building.RandomizeStats()

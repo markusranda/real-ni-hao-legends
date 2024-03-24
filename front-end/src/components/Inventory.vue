@@ -35,8 +35,8 @@ function moveToInventory(building: NHBuilding) {
       <h4>Town</h4>
       <div class="party-grid">
         <div v-for="(item, i) in townItems" :key="i">
-          <div class="party-building">
-            <BuildingV2 :building="item" :disabled="true" @click="() => moveToInventory(item)" class="building"/>
+          <div class="party-building" @click="() => moveToInventory(item)">
+            <BuildingV2 :building="item" :disabled="true" class="building"/>
             <div class="party-building-info">
               <h6>{{ item.name }}</h6>
               <div>inc: {{ item.income }}</div>
