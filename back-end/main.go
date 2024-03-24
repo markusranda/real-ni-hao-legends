@@ -2,15 +2,21 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/gorilla/websocket"
+	"fmt"
 	"log"
 	"math"
 	"net/http"
+	"ni-hao-legends/database"
 	"ni-hao-legends/game"
 	"ni-hao-legends/models"
 	"ni-hao-legends/npc"
+	"os"
+	"os/signal"
 	"sync"
+	"syscall"
 	"time"
+
+	"github.com/gorilla/websocket"
 )
 
 type Connection struct {
@@ -167,7 +173,31 @@ func lønningsdag() {
 	}
 }
 
+func initDb() {
+	// Initialize the database.
+	if err := database.InitDB(); err != nil {
+		fmt.Println("Error initializing database:", err)
+		return
+	}
+}
+
 func main() {
+	initDb()
+	game.InitGameState()
+
+	sigChan := make(chan os.Signal, 1)
+	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
+	shutdownChan := make(chan struct{})
+
+	// Start a goroutine to handle shutdown
+	go func() {
+		<-sigChan // Wait for OS signal
+		fmt.Println("\nReceived shutdown signal. Shutting down gracefully...")
+		game.CloseGameState()
+		close(shutdownChan) // Signal shutdown
+		panic("It's closing time!!!")
+	}()
+
 	go hub.run()
 	http.HandleFunc("/ws", wsHandler)
 	log.Println("✨ Server started at :8080 ✨")
