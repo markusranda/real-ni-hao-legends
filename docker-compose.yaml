@@ -8,8 +8,8 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./nihao.db:./nihao.db
-
+      - ./nihao.db:/nihao.db
+      
   frontend:
     environment:
       - NODE_ENV=production
