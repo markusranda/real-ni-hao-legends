@@ -33,10 +33,10 @@ func CreateDreamPavilion(
 		"Dream pavilion",
 		"Dream pavilion",
 		"dream_pavilion.webp",
-		10,
-		1000,
-		1.1,
-		1.1,
+		10,   // income
+		1000, // upgradeCost
+		1.1,  // incomeScale
+		1.1,  // upgradeCostScale
 		stats,
 		models.Common,
 	)
@@ -50,7 +50,7 @@ func CreateHoleInTheGround(stats BuildingStats) models.NHBuilding {
 		-20,
 		3000,
 		1.1,
-		1.1,
+		.95,
 		stats,
 		models.Uncommon,
 	)
@@ -61,10 +61,10 @@ func CreateNMSGjenbruk(stats BuildingStats) models.NHBuilding {
 		"NMS Gjenbruk",
 		"NMS Gjenbruk",
 		"nms_gjenbruk.webp",
-		10,
-		3000,
-		1.1,
-		1.1,
+		60,   // income
+		7200, // upgradeCost
+		1.3,  // incomeScale
+		1.3,  // upgradeCostScale
 		stats,
 		models.Rare,
 	)
@@ -75,10 +75,10 @@ func CreateOrientalDragon(stats BuildingStats) models.NHBuilding {
 		"Oriental Dragon",
 		"Oriental Dragon",
 		"oriental_dragon.webp",
-		10,
-		4000000,
-		1.5,
-		1.1,
+		100,    // income
+		400000, // upgradeCost
+		1.4,    // incomeScale
+		1.4,    // upgradeCostScale
 		stats,
 		models.Rare,
 	)
@@ -89,10 +89,10 @@ func CreateEricClapton(stats BuildingStats) models.NHBuilding {
 		"Eric Clapton",
 		"Eric Clapton",
 		"eric_clapton.png",
-		20,
-		2000,
-		1.1,
-		1.1,
+		15,   // unique income
+		1500, // unique upgradeCost
+		1.2,  // unique incomeScale
+		1.2,  // unique upgradeCostScale
 		stats,
 		models.Common,
 	)
@@ -103,10 +103,10 @@ func CreateØysteinSunde(stats BuildingStats) models.NHBuilding {
 		"Øystein Sunde",
 		"Øystein Sunde",
 		"sunde.png",
-		30,
-		3000,
-		1.1,
-		1.1,
+		150,   // income
+		12000, // upgradeCost
+		1.5,   // incomeScale
+		1.5,   // upgradeCostScale
 		stats,
 		models.Epic,
 	)
@@ -117,10 +117,10 @@ func CreateKjellElvis(stats BuildingStats) models.NHBuilding {
 		"Kjell Elvis",
 		"Kjell Elvis",
 		"kjell_elvis.png",
-		40,
-		4000,
-		1.1,
-		1.1,
+		30,   // income
+		3600, // upgradeCost
+		1.2,  // incomeScale
+		1.2,  // upgradeCostScale
 		stats,
 		models.Uncommon,
 	)
@@ -131,10 +131,10 @@ func CreateFruitCasket(stats BuildingStats) models.NHBuilding {
 		"Fruit Casket",
 		"Fruit Casket",
 		"fruit_casket.png",
-		50,
-		5000,
-		1.1,
-		1.1,
+		200,   // income
+		15000, // upgradeCost
+		1.6,   // incomeScale
+		1.6,   // upgradeCostScale
 		stats,
 		models.Legendary,
 	)
