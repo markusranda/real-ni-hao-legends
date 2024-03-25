@@ -14,75 +14,24 @@
       </div>
       <Chat class="chat" />
 
-      <div class="side the-game-info-right-wrapper nihao-box">
-        <div class="the-game-table">
-          <span class="d-flex">
-            <input type="text" v-model="nukeTarget" placeholder="name.." class="col" />
-            <Button class="col-2" @click="handleClickNuke">Nuke</Button>
-          </span>
-
-          <span class="d-flex gap-2">
-            <input
-              :value="donateRetirementFund"
-              class="col"
-              type="number"
-              name="retirementFund"
-              min="0"
-              :max="state.town.money"
-              @input="handleInputRetirementFund"
-            />
-            <Button class="col-2" @click="handleClickDonate">Donate</Button>
-          </span>
-
-          <Separator />
-          <div class="game-buttons">
-            <Databingo />
-            <SambaTime />
-            <Quiz />
-          </div>
-          <Separator />
-
-          <OnlinePlayers />
-
-          <Separator />
-        </div>
-      </div>
-
-      <div v-if="activeEvent" class="happenings-container">
-        <div class="position-relative w-100 h-100 d-flex justify-content-center align-items-center">
-          <div class="happenings-container-inner">
-            <nav>
-              <Button @click="handleClickEventExit">x</Button>
-            </nav>
-            <section>
-              <h1>{{ activeEvent.name }}</h1>
-              <p>{{ activeEvent.description }}</p>
-            </section>
-          </div>
-        </div>
-      </div>
+      <TheGameInfo />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { NHBuilding } from '@/models/nh-building'
-import { NHEvent } from '@/models/nh-event'
 import { useGame } from '@/store/game'
 import { defineComponent } from 'vue'
 import Building from './building/Building.vue'
 import TopInfo from './top/TopInfo.vue'
 import Chat from './Chat.vue'
 import Separator from './Separator.vue'
-import Databingo from './Databingo.vue'
-import SambaTime from './SambaTime.vue'
-import Quiz from './Quiz.vue'
-import OnlinePlayers from './OnlinePlayers.vue'
 import Inventory from '@/components/Inventory.vue'
 import Button from '@/components/ui/button/Button.vue'
-import { useWebsocket } from '@/store/websocketStore'
 import Nuke from '@/components/ui/Nuke.vue'
 import InventoryButton from './InventoryButton.vue'
+import TheGameInfo from './TheGameInfo.vue'
 
 export default defineComponent({
   components: {
@@ -93,23 +42,11 @@ export default defineComponent({
     TopInfo,
     Chat,
     Separator,
-    Databingo,
-    SambaTime,
-    Quiz,
-    OnlinePlayers,
-    InventoryButton
+    InventoryButton,
+    TheGameInfo
   },
   data() {
     return {
-      activeEvent: undefined as NHEvent | undefined,
-      nukeTarget: '',
-      retirementFund: 0.0,
-      donateRetirementFund: 0.0,
-
-      // databingo
-      isModalOpen: false,
-      isAgeConfirmed: false,
-
       // inventory
       isInventory: false
     }
@@ -124,45 +61,11 @@ export default defineComponent({
     buildings() {
       return Object.values<NHBuilding>(this.state.town.buildings)
     }
-  },
-  methods: {
-    handleInputRetirementFund(e: Event) {
-      const inputStr = (e?.target as HTMLInputElement)?.value ?? 0
-      const inputValue = parseInt(inputStr)
-      if (inputValue > this.state.town.money) this.donateRetirementFund = this.state.town.money
-      else if (inputValue < 0) this.donateRetirementFund = 0
-      else this.donateRetirementFund = inputValue
-    },
-    handleClickNuke() {
-      useWebsocket().send({
-        type: 'effect.nuke',
-        data: {
-          target: this.nukeTarget
-        }
-      })
-      this.nukeTarget = ''
-    },
-    handleClickEventExit() {
-      this.activeEvent = undefined
-    },
-    handleClickDonate() {
-      if (this.state.town.money >= this.donateRetirementFund) {
-        this.retirementFund += this.donateRetirementFund
-        this.state.town.money -= this.donateRetirementFund
-        this.donateRetirementFund = 0
-      }
-    }
   }
 })
 </script>
 
 <style scoped>
-.game-buttons {
-  display: flex;
-  gap: 1rem;
-  width: 200px;
-}
-
 .the-game-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 400px;

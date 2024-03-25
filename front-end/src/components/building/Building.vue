@@ -16,10 +16,10 @@
 </template>
 
 <script lang="ts" setup>
-import {buildingUpgrade} from '@/commands/buildings'
-import {computed} from 'vue'
-import {useGame} from '@/store/game'
-import BuildingUpgradeButton from "@/components/building/BuildingUpgradeButton.vue";
+import { buildingUpgrade } from '@/commands/buildings'
+import { computed } from 'vue'
+import { useGame } from '@/store/game'
+import BuildingUpgradeButton from '@/components/building/BuildingUpgradeButton.vue'
 
 const props = defineProps<{
   buildingId: string
@@ -27,14 +27,20 @@ const props = defineProps<{
 
 const rarityColor = computed(() => {
   switch (building.value.rarity) {
-    case 0: return 'grey';
-    case 1: return 'green';
-    case 2: return 'blue';
-    case 3: return '#da00da'; // vibrant purple
-    case 4: return 'gold';
-    default: return 'grey';
+    case 0:
+      return 'grey'
+    case 1:
+      return 'green'
+    case 2:
+      return 'blue'
+    case 3:
+      return '#da00da' // vibrant purple
+    case 4:
+      return 'gold'
+    default:
+      return 'grey'
   }
-});
+})
 
 const building = computed(() => useGame().state.town.buildings[props.buildingId])
 const money = computed(() => useGame().state.town.money)
@@ -44,8 +50,6 @@ function handleClickUpgradeBuilding() {
 }
 
 const canUpgrade = computed(() => building.value.upgradeCost <= money.value)
-
-console.log(building.value.rarity)
 </script>
 
 <style scoped>
@@ -65,8 +69,8 @@ console.log(building.value.rarity)
   border: 2px solid white;
 
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  background: rgb(229,255,255);
-  background: linear-gradient(0deg, rgb(247, 255, 252) 0%, rgba(255,248,233,1) 100%);
+  background: rgb(229, 255, 255);
+  background: linear-gradient(0deg, rgb(247, 255, 252) 0%, rgba(255, 248, 233, 1) 100%);
   transition: all 0.3s ease;
 
   img {
@@ -90,5 +94,4 @@ console.log(building.value.rarity)
     filter: contrast(120%);
   }
 }
-
 </style>

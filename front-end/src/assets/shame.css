@@ -37,34 +37,6 @@
   gap: 0.5rem;
 }
 
-.happenings-container {
-  position: fixed;
-  inset: 0;
-  margin: auto;
-
-  width: 100vw;
-  height: 100vh;
-
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.happenings-container-inner {
-  background-color: #fff;
-  padding: 1em;
-
-  nav {
-    display: flex;
-
-    button {
-      margin-left: auto;
-    }
-  }
-
-  section {
-    padding: 2rem;
-  }
-}
-
 .modal {
   position: fixed;
   top: 50%;
