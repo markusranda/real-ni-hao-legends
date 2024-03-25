@@ -31,7 +31,7 @@ function moveToInventory(building: NHBuilding) {
 
 <template>
   <div class="outer">
-    <div class="nihao-box">
+    <div class="inventory-column nihao-box">
       <h4>Town</h4>
       <div class="party-grid">
         <div v-for="(item, i) in townItems" :key="i">
@@ -47,7 +47,8 @@ function moveToInventory(building: NHBuilding) {
         </div>
       </div>
     </div>
-    <div class="nihao-box">
+
+    <div class="inventory-column nihao-box">
       <h4>Inventory</h4>
       <div class="inventory-grid">
         <div v-for="(item, i) in inventoryItems" :key="i">
@@ -60,7 +61,8 @@ function moveToInventory(building: NHBuilding) {
         </div>
       </div>
     </div>
-    <div class="nihao-box">Details about selected building</div>
+
+    <div class="inventory-column nihao-box">Details about selected building</div>
   </div>
 </template>
 
@@ -71,11 +73,15 @@ function moveToInventory(building: NHBuilding) {
   border-radius: 50%;
 }
 
+.inventory-column {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
 .outer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 32px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 1rem;
 }
 
 .inventory-grid {

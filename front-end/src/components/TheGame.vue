@@ -4,7 +4,7 @@
 
   <div class="the-game-grid">
     <TopInfo class="top" />
-    <Inventory v-if="isInventory" />
+    <Inventory v-if="isInventory" class="main" />
     <Town v-else class="main" />
     <Chat class="chat" />
 
@@ -75,6 +75,7 @@ export default defineComponent({
 
 .main {
   grid-area: main;
+  overflow-y: scroll;
 }
 
 .chat {
@@ -88,6 +89,6 @@ export default defineComponent({
 .main,
 .side,
 .chat {
-  margin: 16px;
+  margin: 1rem;
 }
 </style>
