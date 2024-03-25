@@ -1,13 +1,35 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { Ref, computed, ref } from 'vue'
 import { useGame } from '@/store/game'
 import BuildingV2 from '@/components/town/BuildingV2.vue'
 import { NHBuilding } from '@/models/nh-building'
 import { useWebsocket } from '@/store/websocketStore'
 import Separator from '@/components/Separator.vue'
+import Button from '@/components/ui/button/Button.vue'
 
 const inventoryItems = computed(() => useGame().state.inventory.buildings)
 const townItems = computed(() => Object.values(useGame().state.town.buildings))
+const selectedBuilding: Ref<NHBuilding | undefined> = ref(undefined)
+const addBtnDisabled = computed(() => {
+  let found = false
+
+  townItems.value.find((building) => {
+    if (selectedBuilding.value?.name === building.name) found = true
+  })
+
+  return found
+})
+
+function handleClickInventoryBuilding(building: NHBuilding) {
+  selectedBuilding.value = building
+}
+
+function handleClickDetailsAdd(building: NHBuilding) {
+  if (addBtnDisabled.value) return
+
+  moveToTown(building)
+  selectedBuilding.value = undefined
+}
 
 function moveToTown(building: NHBuilding) {
   useWebsocket().send({
@@ -34,8 +56,8 @@ function moveToInventory(building: NHBuilding) {
     <div class="inventory-column nihao-box">
       <h4>Town</h4>
       <div class="party-grid">
-        <div v-for="(item, i) in townItems" :key="i">
-          <div class="party-building" @click="() => moveToInventory(item)">
+        <div v-for="item in townItems" :key="`inventory_town_${item.uniqueId}`">
+          <div class="party-building" @click="() => moveToInventory(item)" :title="item.imgUrl">
             <BuildingV2 :building="item" :disabled="true" class="building" />
             <div class="party-building-info">
               <h6>{{ item.name }}</h6>
@@ -51,18 +73,56 @@ function moveToInventory(building: NHBuilding) {
     <div class="inventory-column nihao-box">
       <h4>Inventory</h4>
       <div class="inventory-grid">
-        <div v-for="(item, i) in inventoryItems" :key="i">
+        <div v-for="item in inventoryItems" :key="`inventory_backpack_${item.uniqueId}`">
           <BuildingV2
             :building="item"
             :disabled="true"
-            @click="() => moveToTown(item)"
+            @click="() => handleClickInventoryBuilding(item)"
+            @dblclick="() => moveToTown(item)"
             class="building"
+            :title="item.name"
           />
         </div>
       </div>
     </div>
 
-    <div class="inventory-column nihao-box">Details about selected building</div>
+    <div class="inventory-column nihao-box">
+      <template v-if="selectedBuilding">
+        <h4>Details</h4>
+        <div class="details-column-list">
+          <div class="image-container">
+            <img :src="selectedBuilding.imgUrl" alt="image of building please" />
+          </div>
+
+          <div class="details-column-list-table">
+            <span>Name:</span>
+            <span>{{ selectedBuilding.name ?? 'N/A' }}</span>
+
+            <span>Level:</span>
+            <span>{{ selectedBuilding.level ?? 'N/A' }}</span>
+
+            <span>Rarity:</span>
+            <span>{{ selectedBuilding.rarity ?? 'N/A' }}</span>
+
+            <span>Income:</span>
+            <span>{{ selectedBuilding.income ?? 'N/A' }}</span>
+
+            <span>Upgrade cost:</span>
+            <span>{{ selectedBuilding.upgradeCost ?? 'N/A' }}</span>
+
+            <span>Base cost:</span>
+            <span>{{ selectedBuilding.baseCost ?? 'N/A' }}</span>
+          </div>
+
+          <Button
+            @click="() => (selectedBuilding ? handleClickDetailsAdd(selectedBuilding) : {})"
+            :disabled="addBtnDisabled"
+          >
+            Add
+          </Button>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -121,6 +181,32 @@ function moveToInventory(building: NHBuilding) {
 
   &:hover {
     filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+  }
+}
+
+.details-column-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  list-style: none;
+
+  .image-container {
+    width: 100%;
+    height: 18rem;
+    overflow: hidden;
+    padding: 0 1rem 0 1rem;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .details-column-list-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 }
 </style>

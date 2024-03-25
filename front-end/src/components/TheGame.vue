@@ -17,9 +17,7 @@ import { useGame } from '@/store/game'
 import { defineComponent } from 'vue'
 import TopInfo from './top/TopInfo.vue'
 import Chat from './Chat.vue'
-import Separator from './Separator.vue'
 import Inventory from '@/components/Inventory.vue'
-import Button from '@/components/ui/button/Button.vue'
 import Nuke from '@/components/ui/Nuke.vue'
 import InventoryButton from './InventoryButton.vue'
 import TheGameInfo from './TheGameInfo.vue'
@@ -27,11 +25,9 @@ import Town from './town/Town.vue'
 
 export default defineComponent({
   components: {
-    Button,
     Nuke,
     TopInfo,
     Chat,
-    Separator,
     InventoryButton,
     TheGameInfo,
     Town,

@@ -45,6 +45,7 @@ import Button from './ui/button/Button.vue'
 import { NHQuizAnswer } from '@/models/nh-quiz'
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { Modal, Button },
   props: {
     handleClickClose: {
