@@ -101,7 +101,7 @@ function getLoot() {
 </script>
 
 <template>
-  <div v-if="showOnlinePlayers">
+  <div>
     <h1>mandem on the net</h1>
     <p>there are {{ Object.keys(players).length }} opps round you</p>
     <li>
@@ -111,7 +111,7 @@ function getLoot() {
       </div>
     </li>
 
-    <ul class="debug-menu" ref="drag">
+    <ul v-if="showOnlinePlayers" class="debug-menu" ref="drag">
       <h6>DEBUG</h6>
       <li v-for="(command, index) in commands" :key="index" class="list-entry">
         <span> {{ command.type }}</span>
