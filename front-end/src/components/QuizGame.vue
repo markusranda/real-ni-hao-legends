@@ -18,7 +18,11 @@
     <template #body>
       <h1>{{ question.question }}</h1>
       <div class="question-container">
-        <Button v-for="answer of question.answers" @click="() => handleClickAnswer(answer)">
+        <Button
+          v-for="answer of question.answers"
+          :key="`question__${answer.answer}`"
+          @click="() => handleClickAnswer(answer)"
+        >
           {{ answer.answer }}
         </Button>
       </div>
