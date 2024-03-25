@@ -19,7 +19,7 @@
 import { buildingUpgrade } from '@/commands/buildings'
 import { computed } from 'vue'
 import { useGame } from '@/store/game'
-import BuildingUpgradeButton from '@/components/building/BuildingUpgradeButton.vue'
+import BuildingUpgradeButton from '@/components/town/BuildingUpgradeButton.vue'
 
 const props = defineProps<{
   buildingId: string
@@ -52,7 +52,7 @@ function handleClickUpgradeBuilding() {
 const canUpgrade = computed(() => building.value.upgradeCost <= money.value)
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .stats {
   display: flex;
   flex-direction: row;
@@ -65,6 +65,8 @@ const canUpgrade = computed(() => building.value.upgradeCost <= money.value)
   display: grid;
   grid-template-rows: 150px 40px auto;
   border-radius: 24px;
+
+  padding: 0.5rem;
 
   border: 2px solid white;
 

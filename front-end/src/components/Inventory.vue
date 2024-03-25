@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useGame } from '@/store/game'
-import BuildingV2 from '@/components/building/BuildingV2.vue'
+import BuildingV2 from '@/components/town/BuildingV2.vue'
 import { NHBuilding } from '@/models/nh-building'
 import { useWebsocket } from '@/store/websocketStore'
 import Separator from '@/components/Separator.vue'

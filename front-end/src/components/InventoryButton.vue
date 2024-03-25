@@ -38,8 +38,6 @@ export default {
       deep: true,
       handler(newState: GameState, oldState: GameState) {
         const diff = newState.inventory.buildings.length - oldState.inventory.buildings.length
-        console.log(diff)
-
         const newInventoryItems = clamp(diff, 0, 99)
         if (newInventoryItems > 0) {
           this.newInventoryItems += newInventoryItems

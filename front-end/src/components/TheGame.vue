@@ -2,28 +2,19 @@
   <Nuke />
   <InventoryButton v-model:isInventory="isInventory" />
 
-  <div class="the-game">
-    <div class="nihao-box the-game-grid">
-      <TopInfo class="top" />
-      <div class="main">
-        <Inventory v-if="isInventory" class="main" />
+  <div class="the-game-grid">
+    <TopInfo class="top" />
+    <Inventory v-if="isInventory" />
+    <Town v-else class="main" />
+    <Chat class="chat" />
 
-        <div class="buildings-grid" v-if="!isInventory">
-          <Building v-for="building in buildings" :key="building.key" :buildingId="building.key" />
-        </div>
-      </div>
-      <Chat class="chat" />
-
-      <TheGameInfo />
-    </div>
+    <TheGameInfo />
   </div>
 </template>
 
 <script lang="ts">
-import { NHBuilding } from '@/models/nh-building'
 import { useGame } from '@/store/game'
 import { defineComponent } from 'vue'
-import Building from './building/Building.vue'
 import TopInfo from './top/TopInfo.vue'
 import Chat from './Chat.vue'
 import Separator from './Separator.vue'
@@ -32,22 +23,22 @@ import Button from '@/components/ui/button/Button.vue'
 import Nuke from '@/components/ui/Nuke.vue'
 import InventoryButton from './InventoryButton.vue'
 import TheGameInfo from './TheGameInfo.vue'
+import Town from './town/Town.vue'
 
 export default defineComponent({
   components: {
     Button,
     Nuke,
-    Inventory,
-    Building,
     TopInfo,
     Chat,
     Separator,
     InventoryButton,
-    TheGameInfo
+    TheGameInfo,
+    Town,
+    Inventory
   },
   data() {
     return {
-      // inventory
       isInventory: false
     }
   },
@@ -57,9 +48,6 @@ export default defineComponent({
     },
     chat() {
       return useGame().chat
-    },
-    buildings() {
-      return Object.values<NHBuilding>(this.state.town.buildings)
     }
   }
 })
@@ -77,7 +65,7 @@ export default defineComponent({
     'main main side'
     'chat chat side';
 
-  height: 95vh;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -101,11 +89,5 @@ export default defineComponent({
 .side,
 .chat {
   margin: 16px;
-}
-
-.buildings-grid {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
 </style>
