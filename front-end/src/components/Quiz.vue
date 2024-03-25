@@ -13,6 +13,7 @@ import QuizGame from './QuizGame.vue'
 import Button from './ui/button/Button.vue'
 
 export default {
+  // eslint-disable-next-line vue/no-reserved-component-names
   components: { QuizGame, Button },
   data() {
     return {

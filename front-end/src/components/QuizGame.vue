@@ -8,23 +8,27 @@
     @close="() => handleClickClose()"
   >
     <template #header>
-      <h1></h1>
+      <span></span>
       <h1>KNAUSER QUIZ</h1>
-      <Button style="margin-left: auto; width: min-content" @click="() => handleClickClose()">
-        Pussy out
-      </Button>
+      <QuizButton
+        style="margin-left: auto; width: min-content"
+        text="Pussy out"
+        @click="() => handleClickClose()"
+      >
+      </QuizButton>
     </template>
 
     <template #body>
-      <h1>{{ question.question }}</h1>
+      <div class="question-text">{{ question.question }}</div>
       <div class="question-container">
-        <Button
-          v-for="answer of question.answers"
+        <QuizButton
+          v-for="(answer, index) of question.answers"
           :key="`question__${answer.answer}`"
+          :index="index"
+          :text="answer.answer"
           @click="() => handleClickAnswer(answer)"
         >
-          {{ answer.answer }}
-        </Button>
+        </QuizButton>
       </div>
     </template>
 
@@ -41,12 +45,12 @@
 <script lang="ts">
 import { QUESTIONS, question_1 } from '@/plugins/quiz'
 import Modal from './Modal.vue'
-import Button from './ui/button/Button.vue'
+import QuizButton from './QuizButton.vue'
 import { NHQuizAnswer } from '@/models/nh-quiz'
 
 export default {
   // eslint-disable-next-line vue/no-reserved-component-names
-  components: { Modal, Button },
+  components: { Modal, QuizButton },
   props: {
     handleClickClose: {
       type: Function,
@@ -109,6 +113,8 @@ export default {
   text-align: center;
   color: #fff;
 
+  align-items: center;
+
   text-shadow:
     -2px -2px 0 black,
     2px -2px 0 black,
@@ -152,8 +158,23 @@ export default {
   height: 100%;
 }
 
+.question-text {
+  color: #fff;
+  background-color: #0e0e0e;
+  border: solid 2px #6097c4;
+  border-radius: 2rem;
+
+  padding: 2rem 10rem 2rem 10rem;
+
+  font-size: 2rem;
+}
+
 .question-container {
   display: flex;
   gap: 1rem;
+
+  strong {
+    color: #e0aa49;
+  }
 }
 </style>
