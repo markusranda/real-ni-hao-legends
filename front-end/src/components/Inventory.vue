@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import {computed} from 'vue'
-import {useGame} from '@/store/game'
+import { computed } from 'vue'
+import { useGame } from '@/store/game'
 import BuildingV2 from '@/components/building/BuildingV2.vue'
-import {NHBuilding} from "@/models/nh-building";
-import {useWebsocket} from "@/store/websocketStore";
-import Separator from "@/components/Separator.vue";
+import { NHBuilding } from '@/models/nh-building'
+import { useWebsocket } from '@/store/websocketStore'
+import Separator from '@/components/Separator.vue'
 
 const inventoryItems = computed(() => useGame().state.inventory.buildings)
 const townItems = computed(() => Object.values(useGame().state.town.buildings))
@@ -36,15 +36,14 @@ function moveToInventory(building: NHBuilding) {
       <div class="party-grid">
         <div v-for="(item, i) in townItems" :key="i">
           <div class="party-building" @click="() => moveToInventory(item)">
-            <BuildingV2 :building="item" :disabled="true" class="building"/>
+            <BuildingV2 :building="item" :disabled="true" class="building" />
             <div class="party-building-info">
               <h6>{{ item.name }}</h6>
               <div>inc: {{ item.income }}</div>
               <div>cost: {{ item.upgradeCost }}</div>
             </div>
           </div>
-          <Separator style="margin: 0"/>
-
+          <Separator style="margin: 0" />
         </div>
       </div>
     </div>
@@ -52,18 +51,20 @@ function moveToInventory(building: NHBuilding) {
       <h4>Inventory</h4>
       <div class="inventory-grid">
         <div v-for="(item, i) in inventoryItems" :key="i">
-          <BuildingV2 :building="item" :disabled="true" @click="() => moveToTown(item)" class="building"/>
+          <BuildingV2
+            :building="item"
+            :disabled="true"
+            @click="() => moveToTown(item)"
+            class="building"
+          />
         </div>
       </div>
     </div>
-    <div class="nihao-box">
-      Details about selected building
-    </div>
+    <div class="nihao-box">Details about selected building</div>
   </div>
 </template>
 
 <style scoped lang="scss">
-
 .building {
   width: 64px;
   height: 64px;
