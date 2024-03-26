@@ -29,4 +29,4 @@ coverage
 
 *.tsbuildinfo
 .vscode/
-back-end/nihao.db
+nihao.db
